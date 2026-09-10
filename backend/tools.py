@@ -113,6 +113,6 @@ def savings_goal_progress(goal_amount: float, month: str | None = None) -> dict:
     return get_savings_goal_progress(goal_amount=goal_amount, month=month)
 
 
-def end_of_month_balance_forecast(current_balance: float) -> dict:
+def end_of_month_balance_forecast() -> dict:
     """Forecast a balance using the latest recorded daily spending rate."""
-    return forecast_end_of_month_balance(current_balance=current_balance)
+    return forecast_end_of_month_balance()
