@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PennyWise AI — Build Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1EF;
+    --panel:#FFFFFF;
+    --panel-2:#F6F8F7;
+    --ink:#101826;
+    --ink-soft:#4C5A6C;
+    --ink-faint:#8592A0;
+    --line:#DCE1E2;
+    --line-soft:#E8ECEB;
+    --accent:#1B7F6B;
+    --accent-dark:#125548;
+    --accent-tint:#E4F0EC;
+    --warm:#C1622D;
+    --warm-tint:#F7E9DF;
+    --easy:#1B7F6B;
+    --medium:#C1622D;
+    --mono-bg:#101826;
+    --mono-ink:#DCE7E3;
+    --shadow: 0 1px 2px rgba(16,24,38,0.06), 0 8px 24px rgba(16,24,38,0.06);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    font-size:15.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0 0 0.5em 0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0 0 1em 0; color:var(--ink-soft); max-width:70ch;}
+  a{color:var(--accent-dark);}
+  code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---------- Shell layout ---------- */
+  .shell{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:272px;
+    flex-shrink:0;
+    background:var(--panel);
+    border-right:1px solid var(--line);
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:32px 0 24px 0;
+    display:flex;
+    flex-direction:column;
+  }
+  .brand{
+    padding:0 28px 22px 28px;
+    border-bottom:1px solid var(--line-soft);
+    margin-bottom:8px;
+  }
+  .brand .mark{
+    width:34px; height:34px;
+    background:var(--ink);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:17px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .brand h1{
+    font-size:19px;
+    line-height:1.2;
+    margin-bottom:4px;
+  }
+  .brand .tag{
+    font-size:12px;
+    color:var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  nav.tabs{
+    flex:1;
+    padding:14px 14px 0 14px;
+  }
+  .tab-btn{
+    width:100%;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    text-align:left;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:11px 14px;
+    border-radius:3px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    font-weight:500;
+    margin-bottom:1px;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .tab-btn .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-faint);
+    width:16px;
+    flex-shrink:0;
+  }
+  .tab-btn:hover{ background:var(--panel-2); color:var(--ink); }
+  .tab-btn.active{
+    background:var(--accent-tint);
+    color:var(--accent-dark);
+    font-weight:600;
+  }
+  .tab-btn.active .idx{ color:var(--accent); }
+
+  .sidebar-foot{
+    padding:16px 28px 0 28px;
+    border-top:1px solid var(--line-soft);
+    margin-top:14px;
+  }
+  .sidebar-foot p{
+    font-size:11.5px;
+    color:var(--ink-faint);
+    margin:0;
+    line-height:1.5;
+  }
+
+  /* ---------- Main content ---------- */
+  main{
+    flex:1;
+    min-width:0;
+    padding:56px 56px 120px 56px;
+    max-width:1180px;
+  }
+  .panel{ display:none; animation:fadein 0.25s ease; }
+  .panel.active{ display:block; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--accent-dark);
+    background:var(--accent-tint);
+    padding:5px 10px;
+    border-radius:2px;
+    margin-bottom:18px;
+  }
+  .section-head{ margin-bottom:36px; max-width:78ch; }
+  .section-head h2{ font-size:34px; margin-bottom:10px; }
+  .section-head .lede{ font-size:16.5px; color:var(--ink-soft); }
+
+  hr.rule{ border:none; border-top:1px solid var(--line); margin:40px 0; }
+
+  /* ---------- Reusable components ---------- */
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .grid{ display:grid; gap:16px; }
+  .grid-2{ grid-template-columns:1fr 1fr; }
+  .grid-3{ grid-template-columns:repeat(3,1fr); }
+  .grid-5{ grid-template-columns:repeat(5,1fr); }
+  @media (max-width:900px){ .grid-2,.grid-3,.grid-5{ grid-template-columns:1fr; } }
+
+  .stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .stat .num{ font-family:'Fraunces',serif; font-size:32px; font-weight:600; color:var(--ink); line-height:1; }
+  .stat .lbl{ font-size:12.5px; color:var(--ink-faint); margin-top:8px; font-family:'IBM Plex Mono',monospace; }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:4px 11px;
+    border-radius:20px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:#fff;
+  }
+  .pill-easy{ background:#1B7F6B; }
+  .pill-medium{ background:#ff9933; color:#3A2200; }
+  .pill-hard{ background:#A02E2E; }
+
+  /* ---------- User stories ---------- */
+  .story{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .story:last-child{ border-bottom:none; }
+  .story .q{ font-size:15.5px; color:var(--ink); font-weight:500; max-width:56ch; margin-bottom:4px;}
+  .story .cat{ font-size:12.5px; color:var(--ink-faint); }
+  .story .right{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; flex-shrink:0; }
+  .diff-dots{ font-size:11px; letter-spacing:1px; color:var(--ink-faint); }
+
+  /* ---------- Tech stack ---------- */
+  .stack-card h3{ font-size:15px; margin-bottom:2px; }
+  .stack-card .role{ font-size:12px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; margin-bottom:12px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+  details.raw-reqs{
+    margin-top:28px;
+    background:var(--mono-bg);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  details.raw-reqs summary{
+    cursor:pointer;
+    padding:14px 18px;
+    color:var(--mono-ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    list-style:none;
+  }
+  details.raw-reqs summary::-webkit-details-marker{ display:none; }
+  details.raw-reqs summary:before{ content:"▸ "; color:var(--accent); }
+  details.raw-reqs[open] summary:before{ content:"▾ "; }
+  details.raw-reqs pre{
+    margin:0;
+    padding:0 18px 18px 18px;
+    color:#A9B7C5;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    line-height:1.7;
+    max-height:340px;
+    overflow-y:auto;
+    white-space:pre-wrap;
+    word-break:break-all;
+  }
+
+  /* ---------- File tree ---------- */
+  .tree{
+    background:var(--mono-bg);
+    color:var(--mono-ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    line-height:1.85;
+    padding:22px 26px;
+    border-radius:4px;
+    overflow-x:auto;
+    white-space:pre;
+  }
+  .tree .comment{ color:#7C8B9C; }
+  .tree .dir{ color:#7FD8BE; }
+  .tree .hl{ color:#F0B27A; }
+
+  .file-desc{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:4px 18px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line-soft);
+    align-items:baseline;
+  }
+  .file-desc:last-child{ border-bottom:none; }
+  .file-desc .fname{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-dark); font-weight:500; }
+  .file-desc .fdesc{ font-size:13.8px; color:var(--ink-soft); margin:0; }
+
+  /* ---------- Diagrams ---------- */
+  .diagram{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:36px 32px;
+  }
+  .flow-row{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    flex-wrap:wrap;
+  }
+  .node{
+    background:var(--panel-2);
+    border:1.5px solid var(--line);
+    border-radius:4px;
+    padding:14px 16px;
+    min-width:150px;
+    text-align:left;
+  }
+  .node .n-title{ font-weight:600; font-size:13.5px; color:var(--ink); margin-bottom:2px; }
+  .node .n-sub{ font-size:11.5px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; }
+  .node.accent{ border-color:var(--accent); background:var(--accent-tint); }
+  .node.accent .n-title{ color:var(--accent-dark); }
+  .node.warm{ border-color:var(--warm); background:var(--warm-tint); }
+  .node.warm .n-title{ color:var(--warm); }
+  .node.ink{ background:var(--ink); border-color:var(--ink);}
+  .node.ink .n-title{ color:#fff; }
+  .node.ink .n-sub{ color:#9FB0BE; }
+
+  .arrow-h{
+    display:flex; align-items:center; justify-content:center;
+    min-width:44px; color:var(--ink-faint); font-size:18px; flex-shrink:0;
+  }
+  .arrow-v{
+    display:flex; align-items:center; justify-content:center;
+    height:36px; color:var(--ink-faint); font-size:18px;
+  }
+  .flow-col{ display:flex; flex-direction:column; align-items:flex-start; }
+  .branch-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ink-faint);
+    margin:6px 0 6px 18px;
+  }
+
+  .seq{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:28px 1fr;
+    gap:16px;
+    padding-bottom:26px;
+    position:relative;
+  }
+  .seq-step:not(:last-child):before{
+    content:"";
+    position:absolute;
+    left:13px; top:28px; bottom:0;
+    width:1.5px;
+    background:var(--line);
+  }
+  .seq-num{
+    width:28px; height:28px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+    flex-shrink:0; z-index:1;
+  }
+  .seq-num.accent{ background:var(--accent); }
+  .seq-body .seq-title{ font-weight:600; font-size:14.5px; margin-bottom:3px; }
+  .seq-body .seq-sub{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+  .seq-body .seq-tag{
+    display:inline-block; margin-top:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    color:var(--ink-faint); border:1px solid var(--line); border-radius:2px; padding:2px 7px;
+  }
+
+  /* ---------- Component inventory ---------- */
+  .inv-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .inv-icon{
+    width:32px; height:32px;
+    border-radius:4px;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;
+    margin-bottom:4px;
+  }
+  .inv-card h4{ font-size:15px; margin-bottom:2px; }
+  .inv-card .status{ font-size:11px; font-family:'IBM Plex Mono',monospace; color:var(--accent-dark); }
+  .inv-card p{ font-size:13.3px; margin:0; }
+
+  /* ---------- Principles ---------- */
+  .principle{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:24px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line-soft);
+    align-items:start;
+  }
+  .principle:last-child{ border-bottom:none; }
+  .principle .p-name{ font-family:'Fraunces',serif; font-size:20px; font-weight:600; color:var(--ink); }
+
+  /* ---------- Production plan ---------- */
+  .phase-nav{
+    display:flex; gap:8px; flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .phase-chip{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px;
+    border:1px solid var(--line); border-radius:20px;
+    padding:5px 12px; color:var(--ink-soft);
+  }
+  .layer{
+    border:1px solid var(--line);
+    border-radius:4px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .layer-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 20px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .layer-head h4{ font-size:15px; margin:0; }
+  .layer-head .layer-tag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); }
+  .layer-body{ padding:16px 20px; background:var(--panel); }
+  .layer-body ul{ margin:0; padding-left:18px; }
+  .layer-body li{ font-size:13.6px; color:var(--ink-soft); margin-bottom:6px; }
+
+  .checklist{ display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; }
+  @media (max-width:800px){ .checklist{ grid-template-columns:1fr; } }
+  .check-item{ display:flex; gap:10px; align-items:flex-start; font-size:13.6px; color:var(--ink-soft); padding:6px 0; }
+  .check-item .box{
+    width:15px; height:15px; border:1.5px solid var(--accent); border-radius:3px;
+    flex-shrink:0; margin-top:2px; position:relative;
+  }
+  .check-item .box:after{
+    content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--accent); font-size:10px; font-weight:700;
+  }
+
+  .risk-table{ width:100%; border-collapse:collapse; margin-top:6px; }
+  .risk-table th{
+    text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.02em;
+    color:var(--ink-faint); font-weight:500; padding:8px 14px; border-bottom:1px solid var(--line);
+  }
+  .risk-table td{
+    padding:12px 14px; border-bottom:1px solid var(--line-soft); font-size:13.3px; color:var(--ink-soft); vertical-align:top;
+  }
+  .risk-table tr:last-child td{ border-bottom:none; }
+  .risk-table td.sev{ font-family:'IBM Plex Mono',monospace; font-size:11px; }
+  .sev-high{ color:var(--warm); }
+  .sev-med{ color:#A9862F; }
+
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-thumb{ background:#CBD3D2; border-radius:6px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+
+  @media (max-width:880px){
+    .shell{ flex-direction:column; }
+    .sidebar{ width:100%; height:auto; position:relative; }
+    main{ padding:32px 20px 80px 20px; }
+  }
+
+  /* ---------- Entrance animation (executive summary) ---------- */
+  @keyframes revealUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .reveal{
+    opacity:0;
+    animation:revealUp 0.6s cubic-bezier(0.2,0.7,0.2,1) forwards;
+    animation-delay:calc(var(--d, 0) * 70ms);
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{ animation:none; opacity:1; }
+  }
+
+  /* ---------- Lane diagram (system architecture) ---------- */
+  .lane{
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--panel);
+    margin-bottom:18px;
+    overflow:hidden;
+  }
+  .lane-head{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 20px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+  }
+  .lane-head .lane-num{
+    width:19px; height:19px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10.5px; flex-shrink:0;
+  }
+  .lane-body{ padding:26px 24px; }
+  .lane-note{
+    margin-top:14px;
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--ink-faint);
+  }
+  .lane-note .dash{ flex:1; border-top:1.5px dashed var(--line); }
+  .lane-note.callout{
+    background:var(--panel-2); border:1px dashed var(--line);
+    border-radius:4px; padding:10px 14px; margin-top:16px;
+  }
+
+  .flow-tier{
+    display:flex; align-items:center; justify-content:center;
+    flex-wrap:wrap; row-gap:14px; column-gap:0;
+    width:100%;
+  }
+  .tier-arrow{
+    display:flex; align-items:center; justify-content:center;
+    width:100%;
+    color:var(--ink-faint); font-size:17px;
+    padding:6px 0;
+  }
+  .tier-arrow .lbl-mono{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    color:var(--ink-faint); margin-left:8px;
+  }
+  .flow-tier .node{ margin:0 6px; }
+
+  /* ---------- Component inventory ribbon ---------- */
+  .inv-card{ position:relative; }
+  .inv-card.flagship{
+    border-color:var(--accent);
+    background:linear-gradient(180deg, var(--accent-tint) 0%, var(--panel) 55%);
+  }
+  .ribbon{
+    position:absolute; top:12px; right:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px; font-weight:600; letter-spacing:0.03em;
+    background:var(--accent); color:#fff;
+    padding:3px 8px; border-radius:20px;
+  }
+  .inv-card .why{
+    font-size:12.3px; color:var(--accent-dark); font-weight:500;
+    margin-top:2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">P</div>
+      <h1>PennyWise AI</h1>
+      <div class="tag">build report / v1.0</div>
+    </div>
+    <nav class="tabs" id="tabnav">
+      <button class="tab-btn active" data-target="summary"><span class="idx">01</span> Executive summary</button>
+      <button class="tab-btn" data-target="stories"><span class="idx">02</span> User stories</button>
+      <button class="tab-btn" data-target="stack"><span class="idx">03</span> Tech stack</button>
+      <button class="tab-btn" data-target="backend"><span class="idx">04</span> Backend components</button>
+      <button class="tab-btn" data-target="architecture"><span class="idx">05</span> System architecture</button>
+      <button class="tab-btn" data-target="flow"><span class="idx">06</span> End-to-end flow</button>
+      <button class="tab-btn" data-target="inventory"><span class="idx">07</span> Component inventory</button>
+      <button class="tab-btn" data-target="principles"><span class="idx">08</span> Design principles</button>
+      <button class="tab-btn" data-target="production"><span class="idx">09</span> Production integration</button>
+    </nav>
+    <div class="sidebar-foot">
+      <p>Mobile banking assistant · agentic architecture · Gemini function calling</p>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+
+    <!-- ============ 01 EXECUTIVE SUMMARY ============ -->
+    <section class="panel active" id="summary">
+      <div class="eyebrow reveal" style="--d:0">Build report · Section 01</div>
+      <div class="section-head reveal" style="--d:1">
+        <h2>Executive summary</h2>
+        <p class="lede">PennyWise AI turns raw transaction data into a conversation. Instead of filters and dashboards, users ask what they want to know — and a tool-based agent decides how to answer accurately.</p>
+      </div>
+
+      <div class="grid grid-3" style="margin-bottom:32px;">
+        <div class="stat reveal" style="--d:2"><div class="num" data-count="12">0</div><div class="lbl">user stories implemented</div></div>
+        <div class="stat reveal" style="--d:3"><div class="num" data-count="13">0</div><div class="lbl">analytics tool functions</div></div>
+        <div class="stat reveal" style="--d:4"><div class="num" data-count="2">0</div><div class="lbl">layers: reasoning vs. computation</div></div>
+      </div>
+
+      <div class="card reveal" style="margin-bottom:20px; --d:5">
+        <p>PennyWise AI is an intelligent personal finance assistant designed to transform raw transaction data into actionable, personalized financial insights. The system combines LLM-powered reasoning, structured transaction analytics, and retrieval-based financial context, allowing users to interact with their finances through natural-language queries rather than traditional banking filters and dashboards. Users can ask about spending trends, transaction history, category breakdowns, and income-based analysis, while the agent dynamically identifies the appropriate intent, filters, and analytical operation to run.</p>
+        <p>The system is built on a <strong style="color:var(--ink)">tool-based agent architecture</strong> that separates AI reasoning from financial data access and computation — the language model decides <em>what</em> to compute, but never computes financial figures itself. Transaction data is enriched with standardized categories, subcategories, merchants, and metadata such as logos, enabling the agent to return both accurate financial results and rich UI experiences in the same response. The architecture is intentionally data-driven rather than hardcoded, so new transaction categories, merchants, and use cases can be supported without adding query-specific rules.</p>
+        <p>For production deployment in a mobile banking environment, PennyWise AI is designed to incorporate secure API access, authentication, least-privilege tool permissions, encryption, PII protection, audit logging, rate limiting, and transaction confirmation for sensitive actions. Production hardening would further include horizontal scalability, model fallbacks, automated evaluation, observability, distributed tracing, latency and cost monitoring, CI/CD, versioned models and prompts, and rollback mechanisms.</p>
+        <p style="margin-bottom:0;">This architecture provides a foundation for a scalable banking assistant that can evolve from passive financial insights toward secure, personalized financial guidance — while maintaining accuracy, reliability, privacy, and operational control.</p>
+      </div>
+
+      <div class="grid grid-5">
+        <div class="card reveal" style="padding:14px 16px; --d:6"><div class="n-title" style="font-weight:600;font-size:13px;color:var(--accent-dark)">Trustworthy</div></div>
+        <div class="card reveal" style="padding:14px 16px; --d:7"><div class="n-title" style="font-weight:600;font-size:13px;color:var(--accent-dark)">Accurate</div></div>
+        <div class="card reveal" style="padding:14px 16px; --d:8"><div class="n-title" style="font-weight:600;font-size:13px;color:var(--accent-dark)">Privacy-first</div></div>
+        <div class="card reveal" style="padding:14px 16px; --d:9"><div class="n-title" style="font-weight:600;font-size:13px;color:var(--accent-dark)">Scalable</div></div>
+        <div class="card reveal" style="padding:14px 16px; --d:10"><div class="n-title" style="font-weight:600;font-size:13px;color:var(--accent-dark)">Actionable</div></div>
+      </div>
+    </section>
+
+    <!-- ============ 02 USER STORIES ============ -->
+    <section class="panel" id="stories">
+      <div class="eyebrow">Build report · Section 02</div>
+      <div class="section-head">
+        <h2>User stories</h2>
+        <p class="lede">Twelve natural-language questions the agent handles end-to-end, spanning spending analysis, recurring charges, merchant insight, anomaly detection, trend comparison, goal tracking, and forecasting.</p>
+      </div>
+
+      <div class="card">
+        <div class="story">
+          <div>
+            <div class="q">How much did I spend on restaurants last month?</div>
+            <div class="cat">Spending analysis</div>
+          </div>
+          <div class="right"><span class="pill pill-easy">&#9679; Easy</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">What are my top 3 spending categories this month?</div>
+            <div class="cat">Spending analysis</div>
+          </div>
+          <div class="right"><span class="pill pill-easy">&#9679; Easy</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Show me all my subscriptions</div>
+            <div class="cat">Recurring charges</div>
+          </div>
+          <div class="right"><span class="pill pill-easy">&#9679; Easy</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Which merchant do I spend the most at?</div>
+            <div class="cat">Merchant insight</div>
+          </div>
+          <div class="right"><span class="pill pill-easy">&#9679; Easy</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Are there any duplicate charges in my recent history?</div>
+            <div class="cat">Anomaly detection</div>
+          </div>
+          <div class="right"><span class="pill pill-medium">&#9679;&#9679; Medium</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">How does my spending this month compare to last month?</div>
+            <div class="cat">Trend</div>
+          </div>
+          <div class="right"><span class="pill pill-medium">&#9679;&#9679; Medium</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Flag any unusual or out-of-pattern transactions</div>
+            <div class="cat">Anomaly detection</div>
+          </div>
+          <div class="right"><span class="pill pill-medium">&#9679;&#9679; Medium</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">What's my average weekly grocery spend?</div>
+            <div class="cat">Trend</div>
+          </div>
+          <div class="right"><span class="pill pill-medium">&#9679;&#9679; Medium</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Show me all coffee shop visits — with their logos</div>
+            <div class="cat">Merchant + UI</div>
+          </div>
+          <div class="right"><span class="pill pill-medium">&#9679;&#9679; Medium</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">How much of my income goes to food and dining?</div>
+            <div class="cat">Income-based analysis</div>
+          </div>
+          <div class="right"><span class="pill pill-hard">&#9679;&#9679;&#9679; Hard</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Am I on track for my savings goal this month?</div>
+            <div class="cat">Goal tracking</div>
+          </div>
+          <div class="right"><span class="pill pill-hard">&#9679;&#9679;&#9679; Hard</span></div>
+        </div>
+        <div class="story">
+          <div>
+            <div class="q">Predict my likely end-of-month balance based on spending patterns</div>
+            <div class="cat">Forecasting</div>
+          </div>
+          <div class="right"><span class="pill pill-hard">&#9679;&#9679;&#9679; Hard</span></div>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h3 style="font-size:18px;margin-bottom:14px;">Functional coverage</h3>
+      <div class="grid grid-2">
+        <div class="card">
+          <p style="margin-bottom:10px;"><strong style="color:var(--ink)">Difficulty split</strong></p>
+          <p style="margin-bottom:0;">4 stories rated <span class="pill pill-easy">Easy</span> — direct single-filter aggregations (category, merchant, date range). 5 stories rated <span class="pill pill-medium">Medium</span> — require comparison across periods, pattern/anomaly logic, or combined merchant + UI enrichment (logos). 3 stories rated <span class="pill pill-hard">Hard</span> — income-based analysis, goal tracking, and forecasting, which all require reasoning beyond the raw transaction ledger: income figures, a savings target, or a projection over time.</p>
+        </div>
+        <div class="card">
+          <p style="margin-bottom:10px;"><strong style="color:var(--ink)">Coverage by capability</strong></p>
+          <p style="margin-bottom:0;">10 of the 12 stories map to a deterministic function already in <code class="mono">tools.py</code> — aggregation, filtering, grouping, period comparison, duplicate/outlier detection, and merchant-metadata lookup — so the LLM never estimates a dollar figure itself. Goal tracking and forecasting are scoped as the next two tool functions to build, following the same pattern.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 TECH STACK ============ -->
+    <section class="panel" id="stack">
+      <div class="eyebrow">Build report · Section 03</div>
+      <div class="section-head">
+        <h2>Tech stack</h2>
+        <p class="lede">Derived from the project's <code class="mono">requirements.txt</code>. The file is exported from a broader Anaconda base environment, so it also carries packages unrelated to PennyWise AI directly (Jupyter, Spyder, Scrapy, and similar tooling). Below is the curated subset that actually maps to the application's layers, plus the raw file for reference.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:16px;">
+        <div class="card stack-card">
+          <h3>API &amp; runtime</h3>
+          <div class="role">backend/main.py</div>
+          <div class="chip-row">
+            <span class="chip">fastapi 0.141.1</span>
+            <span class="chip">starlette</span>
+            <span class="chip">uvicorn 0.52.4</span>
+            <span class="chip">pydantic 2.13.5</span>
+            <span class="chip">pydantic_core</span>
+            <span class="chip">h11 / httpcore / httpx</span>
+            <span class="chip">python-dotenv</span>
+          </div>
+        </div>
+        <div class="card stack-card">
+          <h3>LLM / agent reasoning</h3>
+          <div class="role">backend/agent.py</div>
+          <div class="chip-row">
+            <span class="chip">google-genai 2.22.0</span>
+            <span class="chip">google-auth</span>
+            <span class="chip">tenacity</span>
+            <span class="chip">typing_extensions</span>
+            <span class="chip">rich</span>
+            <span class="chip">typer</span>
+          </div>
+        </div>
+        <div class="card stack-card">
+          <h3>Data &amp; analytics engine</h3>
+          <div class="role">backend/analytics.py · scripts/enrich_transactions.py</div>
+          <div class="chip-row">
+            <span class="chip">pandas</span>
+            <span class="chip">numpy</span>
+            <span class="chip">scipy</span>
+            <span class="chip">scikit-learn</span>
+            <span class="chip">statsmodels</span>
+            <span class="chip">openpyxl</span>
+            <span class="chip">jsonlines</span>
+          </div>
+        </div>
+        <div class="card stack-card">
+          <h3>Security primitives (production-ready)</h3>
+          <div class="role">available, not yet wired in the prototype</div>
+          <div class="chip-row">
+            <span class="chip">cryptography</span>
+            <span class="chip">PyJWT</span>
+            <span class="chip">bcrypt</span>
+            <span class="chip">pyOpenSSL</span>
+          </div>
+        </div>
+        <div class="card stack-card">
+          <h3>Cloud &amp; storage readiness</h3>
+          <div class="role">for moving data/ off local disk</div>
+          <div class="chip-row">
+            <span class="chip">aiobotocore</span>
+            <span class="chip">botocore</span>
+            <span class="chip">s3fs</span>
+            <span class="chip">aiohttp</span>
+          </div>
+        </div>
+        <div class="card stack-card">
+          <h3>Dev quality &amp; tooling</h3>
+          <div class="role">lint / type / test</div>
+          <div class="chip-row">
+            <span class="chip">pytest</span>
+            <span class="chip">black</span>
+            <span class="chip">flake8</span>
+            <span class="chip">pylint</span>
+            <span class="chip">mypy-extensions</span>
+            <span class="chip">isort</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:2px;">Optional / future model tooling present in the environment</h3>
+        <p style="margin-bottom:10px; font-size:13.3px;">Not exercised by the current agent, but available if a local-model fallback or embeddings-based retrieval layer is added later.</p>
+        <div class="chip-row">
+          <span class="chip">transformers</span>
+          <span class="chip">tokenizers</span>
+          <span class="chip">datasets</span>
+          <span class="chip">safetensors</span>
+          <span class="chip">huggingface_hub</span>
+          <span class="chip">matplotlib / seaborn / plotly / bokeh</span>
+        </div>
+      </div>
+
+      <details class="raw-reqs">
+        <summary>View raw requirements.txt (full environment export)</summary>
+        <pre id="raw-req-block">Loading…</pre>
+      </details>
+    </section>
+
+    <!-- ============ 04 BACKEND COMPONENTS ============ -->
+    <section class="panel" id="backend">
+      <div class="eyebrow">Build report · Section 04</div>
+      <div class="section-head">
+        <h2>Backend components</h2>
+        <p class="lede">A small, legible file tree. Each file owns exactly one concern: HTTP surface, agent reasoning, tool contracts, or analytics computation.</p>
+      </div>
+
+      <div class="tree">PennyWise-AI/
+├── <span class="dir">backend/</span>
+│   ├── agent.py                 <span class="comment"># Gemini client, prompt, and function-call loop</span>
+│   ├── analytics.py             <span class="comment"># Pandas-based transaction analytics</span>
+│   ├── main.py                  <span class="comment"># FastAPI app, CORS, /health, and /chat</span>
+│   ├── models.py                <span class="comment"># Chat request and response models</span>
+│   ├── requirements.txt         <span class="comment"># Python runtime dependencies</span>
+│   └── tools.py                 <span class="comment"># Analytics functions exposed to the agent</span>
+├── <span class="dir">data/</span>
+│   ├── data_profile.json              <span class="comment"># Generated dataset coverage/profile metadata</span>
+│   ├── enriched_transactions.csv      <span class="comment"># Normalized demo data used by analytics</span>
+│   └── sample_transactions.csv        <span class="comment"># Source demo transaction export</span>
+├── <span class="dir">docs/</span>
+│   └── architecture.svg         <span class="comment"># Detailed standalone system diagram</span>
+├── <span class="dir">frontend/</span>
+│   ├── <span class="dir">src/</span>
+│   │   ├── <span class="dir">components/</span>
+│   │   │   ├── BankingHome.jsx
+│   │   │   ├── Chat.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Message.jsx
+│   │   │   ├── NamePrompt.jsx
+│   │   │   ├── PhoneFrame.jsx
+│   │   │   ├── SuggestedQuestions.jsx
+│   │   │   ├── TransactionItem.jsx
+│   │   │   └── TypingIndicator.jsx
+│   │   ├── <span class="dir">services/</span>api.js             <span class="comment"># Live FastAPI client</span>
+│   │   ├── <span class="dir">styles/</span>index.css            <span class="comment"># Mobile banking visual system</span>
+│   │   ├── App.jsx                     <span class="comment"># Top-level application state and routing</span>
+│   │   └── main.jsx                    <span class="comment"># React entry point</span>
+│   ├── index.html
+│   ├── package-lock.json
+│   └── package.json
+├── <span class="dir">scripts/</span>
+│   └── enrich_transactions.py    <span class="comment"># Data normalization/enrichment command</span>
+├── .env.example                  <span class="comment"># GEMINI_API_KEY template</span>
+├── .gitignore
+└── README.md</div>
+
+      <hr class="rule">
+
+      <h3 style="font-size:18px;margin-bottom:6px;">What each backend file is responsible for</h3>
+      <div class="card" style="margin-top:16px;">
+        <div class="file-desc">
+          <div class="fname">main.py</div>
+          <p class="fdesc">FastAPI application entrypoint. Owns CORS configuration, the <code class="mono">/health</code> liveness endpoint, and the <code class="mono">/chat</code> endpoint that the frontend calls for every user message.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">agent.py</div>
+          <p class="fdesc">Holds the Gemini client, the system prompt, and the function-calling loop: sends the user message plus tool definitions to the model, executes whichever tool the model selects, feeds the result back, and returns the final natural-language answer.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">tools.py</div>
+          <p class="fdesc">The contract layer between the LLM and the data. Declares the 13 analytics functions the agent is allowed to call — each one typed, named, and described so Gemini can pick the right one for a given question.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">analytics.py</div>
+          <p class="fdesc">The actual computation. Pandas-based aggregation, filtering, grouping, comparison, and anomaly logic over the enriched transaction dataset. This is where every number in a response is produced — never inside the model.</p>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h3 style="font-size:18px;margin-bottom:6px;">The 13 analytics tool functions</h3>
+      <p style="margin-bottom:16px;">Every user story in Section 02 resolves to one of these — the complete, current surface the agent can call.</p>
+      <div class="card">
+        <div class="file-desc">
+          <div class="fname">load_transactions()</div>
+          <p class="fdesc">Load and prepare the enriched transaction data.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_data_coverage()</div>
+          <p class="fdesc">Make data coverage — date range, row counts — an explicit part of the analytics layer.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_spending_by_category()</div>
+          <p class="fdesc">Calculate total spending for a given category.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_top_categories()</div>
+          <p class="fdesc">Rank categories by total spending.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_top_merchants()</div>
+          <p class="fdesc">Rank merchants by total spending.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_transactions_by_merchant()</div>
+          <p class="fdesc">Search the actual enriched transaction data for a given merchant or merchant category.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_recurring_expenses()</div>
+          <p class="fdesc">Identify recurring expenses (subscriptions) and their totals.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_spending_by_month()</div>
+          <p class="fdesc">Calculate total spending by month.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">compare_periods()</div>
+          <p class="fdesc">Compare spending between two periods.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_average_weekly_spend()</div>
+          <p class="fdesc">Calculate average weekly spending, optionally scoped to a category.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">get_spending_to_income_ratio()</div>
+          <p class="fdesc">Calculate spending-to-income ratio — the function behind the one Hard-rated user story.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">detect_duplicates()</div>
+          <p class="fdesc">Detect exact duplicate expense transactions.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">detect_anomalies()</div>
+          <p class="fdesc">Identify unusually large or out-of-pattern expense transactions.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">models.py</div>
+          <p class="fdesc">Pydantic request/response schemas for the <code class="mono">/chat</code> endpoint, keeping the API contract explicit and validated independent of the agent's internal state.</p>
+        </div>
+        <div class="file-desc">
+          <div class="fname">scripts/enrich_transactions.py</div>
+          <p class="fdesc">Standalone command that takes <code class="mono">sample_transactions.csv</code> and produces <code class="mono">enriched_transactions.csv</code> — normalizing merchants, assigning categories/subcategories, and attaching logo metadata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 SYSTEM ARCHITECTURE ============ -->
+    <section class="panel" id="architecture">
+      <div class="eyebrow">Build report · Section 05</div>
+      <div class="section-head">
+        <h2>System architecture</h2>
+        <p class="lede">A local prototype: deterministic financial analytics, Gemini function calling, and a resilient React banking interface — shown as three independent lanes: data preparation, the live chat request, and the live-only response configuration.</p>
+      </div>
+
+      <!-- LANE 1: DATA PREPARATION -->
+      <div class="lane">
+        <div class="lane-head"><span class="lane-num">1</span> Data preparation — run when the demo data is rebuilt</div>
+        <div class="lane-body">
+          <div class="flow-tier">
+            <div class="node">
+              <div class="n-title">Raw CSV</div>
+              <div class="n-sub">sample_transactions.csv · fictitious source export</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node accent">
+              <div class="n-title">Enrichment script</div>
+              <div class="n-sub">scripts/enrich_transactions.py · normalizes dates &amp; amounts, classifies type/merchant/category</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node">
+              <div class="n-title">Classification rules</div>
+              <div class="n-sub">controlled taxonomy · merchant aliases &amp; logos · default deterministic path</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node">
+              <div class="n-title">Optional LLM step</div>
+              <div class="n-sub">refinement only with --use-llm · output validated against taxonomy</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node ink">
+              <div class="n-title">Prepared data</div>
+              <div class="n-sub">enriched_transactions.csv · data_profile.json</div>
+            </div>
+          </div>
+          <div class="lane-note callout">
+            <span>↩ optional classification refinement — the LLM step, when enabled, feeds a normalized re-classification back into the enrichment script rather than writing data directly</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LANE 2: LIVE CHAT REQUEST -->
+      <div class="lane">
+        <div class="lane-head"><span class="lane-num">2</span> Live chat request — default prototype flow</div>
+        <div class="lane-body">
+          <div class="flow-tier">
+            <div class="node">
+              <div class="n-title">User</div>
+              <div class="n-sub">types a financial question</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node accent">
+              <div class="n-title">React + Vite client</div>
+              <div class="n-sub">PhoneFrame · Chat/Message/Composer · keeps history in memory · services/api.js</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node">
+              <div class="n-title">FastAPI service</div>
+              <div class="n-sub">backend/main.py · POST /chat · CORS for local Vite client</div>
+            </div>
+            <div class="arrow-h">→</div>
+            <div class="node accent">
+              <div class="n-title">PennyWise agent</div>
+              <div class="n-sub">backend/agent.py · builds contents from history · dispatches tool calls</div>
+            </div>
+          </div>
+
+          <div class="tier-arrow">⇄ <span class="lbl-mono">model request · text or function call</span></div>
+
+          <div class="flow-tier">
+            <div class="node ink">
+              <div class="n-title">Google Gemini</div>
+              <div class="n-sub">GenerateContent API · prompt + chat history · function-call decision</div>
+            </div>
+          </div>
+
+          <div class="tier-arrow">⇄ <span class="lbl-mono">declared function call · structured result</span></div>
+
+          <div class="flow-tier">
+            <div class="node warm">
+              <div class="n-title">Tool + analytics layer</div>
+              <div class="n-sub">tools.py contracts → analytics.py · pandas over enriched_transactions.csv</div>
+            </div>
+          </div>
+
+          <div class="lane-note callout">
+            <span>↩ JSON response → rendered assistant message — the agent's final text and any structured transaction/logo data return through FastAPI to the React client; only successful backend replies reach the chat UI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LANE 3: LIVE-ONLY RESPONSE CONFIGURATION -->
+      <div class="lane">
+        <div class="lane-head"><span class="lane-num">3</span> Live-only response configuration</div>
+        <div class="lane-body">
+          <div class="flow-tier">
+            <div class="node">
+              <div class="n-title">VITE_API_URL</div>
+              <div class="n-sub">frontend points to the FastAPI service — no browser mock-response path</div>
+            </div>
+            <div class="arrow-h">⇢</div>
+            <div class="node warm">
+              <div class="n-title">API request failure</div>
+              <div class="n-sub">UI shows a connection error and retry</div>
+            </div>
+            <div class="arrow-h">⇢</div>
+            <div class="node ink">
+              <div class="n-title">Backend-only answers</div>
+              <div class="n-sub">responses originate in FastAPI — no client-side fallback content</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:24px;">
+        <div class="card">
+          <p style="margin-bottom:0;"><strong style="color:var(--ink)">Reasoning path</strong> — the frontend sends a raw user message to <code class="mono">/chat</code>. The agent hands the message and the full set of 13 tool definitions to Gemini, which returns a structured function call rather than free-form text.</p>
+        </div>
+        <div class="card">
+          <p style="margin-bottom:0;"><strong style="color:var(--ink)">Computation path</strong> — the chosen function executes against <code class="mono">analytics.py</code>, which reads the enriched CSV and returns a precise, deterministic result that the model then explains back in natural language.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 END-TO-END FLOW ============ -->
+    <section class="panel" id="flow">
+      <div class="eyebrow">Build report · Section 06</div>
+      <div class="section-head">
+        <h2>End-to-end flow</h2>
+        <p class="lede">One user question, traced from keystroke to rendered answer — including where the numbers get computed and where the UI gets enriched.</p>
+      </div>
+
+      <div class="diagram">
+        <div class="seq">
+          <div class="seq-step">
+            <div class="seq-num">1</div>
+            <div class="seq-body">
+              <div class="seq-title">User asks a question</div>
+              <p class="seq-sub">e.g. "Show me all coffee shop visits — with their logos" typed into Chat.jsx.</p>
+              <span class="seq-tag">frontend</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num">2</div>
+            <div class="seq-body">
+              <div class="seq-title">Frontend calls the API</div>
+              <p class="seq-sub">api.js POSTs the message to <code class="mono">/chat</code>; a typing indicator renders immediately.</p>
+              <span class="seq-tag">services/api.js → main.py</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num accent">3</div>
+            <div class="seq-body">
+              <div class="seq-title">Agent builds the prompt</div>
+              <p class="seq-sub">agent.py sends the user message, conversation context, and the full tool schema (from tools.py) to Gemini.</p>
+              <span class="seq-tag">agent.py</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num accent">4</div>
+            <div class="seq-body">
+              <div class="seq-title">Gemini selects intent and tool</div>
+              <p class="seq-sub">The model identifies this as a merchant-category filter and returns a function call — e.g. <code class="mono">get_transactions_by_merchant(merchant_category="coffee", include_logo=true)</code> — instead of guessing an answer.</p>
+              <span class="seq-tag">google-genai</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num accent">5</div>
+            <div class="seq-body">
+              <div class="seq-title">Tool executes against real data</div>
+              <p class="seq-sub">tools.py routes the call into analytics.py, which filters the enriched CSV and returns matching transactions with merchant, amount, date, and logo metadata.</p>
+              <span class="seq-tag">tools.py → analytics.py</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num">6</div>
+            <div class="seq-body">
+              <div class="seq-title">Result is returned to the model</div>
+              <p class="seq-sub">The function result — not raw model speculation — is fed back into the conversation so Gemini can compose the final natural-language reply.</p>
+              <span class="seq-tag">agent.py</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num">7</div>
+            <div class="seq-body">
+              <div class="seq-title">Response returns to the frontend</div>
+              <p class="seq-sub">main.py sends back both the natural-language summary and the structured transaction list (with logo URLs) in the <code class="mono">/chat</code> response payload.</p>
+              <span class="seq-tag">models.py</span>
+            </div>
+          </div>
+          <div class="seq-step">
+            <div class="seq-num">8</div>
+            <div class="seq-body">
+              <div class="seq-title">Rich UI renders</div>
+              <p class="seq-sub">Message.jsx renders the explanation; TransactionItem.jsx renders each transaction as a card with merchant logo, amount, and date — no dashboard navigation required.</p>
+              <span class="seq-tag">frontend</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 COMPONENT INVENTORY ============ -->
+    <section class="panel" id="inventory">
+      <div class="eyebrow">Build report · Section 07</div>
+      <div class="section-head">
+        <h2>Component inventory</h2>
+        <p class="lede">What actually got built, layer by layer — and why each layer is a genuine advantage, not just a checkbox.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="inv-card flagship">
+          <span class="ribbon">core differentiator</span>
+          <div class="inv-icon">AG</div>
+          <h4>Agent core</h4>
+          <div class="status">● implemented</div>
+          <p>A real function-calling loop, not a scripted chatbot: Gemini reasons over intent, dispatches the right tool, and re-ingests the result before it ever speaks.</p>
+          <div class="why">Why it matters — every answer is grounded, not guessed.</div>
+        </div>
+        <div class="inv-card flagship">
+          <span class="ribbon">core differentiator</span>
+          <div class="inv-icon">TL</div>
+          <h4>Tool contracts</h4>
+          <div class="status">● implemented</div>
+          <p>13 typed, production-shaped analytics functions give the model a precise vocabulary — covering 10 of the 12 user stories today, from a one-line lookup to income-ratio analysis.</p>
+          <div class="why">Why it matters — new questions become new tools, not new prompts.</div>
+        </div>
+        <div class="inv-card flagship">
+          <span class="ribbon">core differentiator</span>
+          <div class="inv-icon">AN</div>
+          <h4>Analytics engine</h4>
+          <div class="status">● implemented</div>
+          <p>Every dollar figure is computed in pandas — aggregation, grouping, period comparison, duplicate and outlier detection — never estimated by the LLM.</p>
+          <div class="why">Why it matters — bank-grade accuracy the model can't accidentally hallucinate.</div>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">DT</div>
+          <h4>Data enrichment</h4>
+          <div class="status">● implemented</div>
+          <p>A standalone pipeline normalizes merchants and assigns category, subcategory, and logo metadata — with an optional LLM refinement step layered on top of a deterministic default.</p>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">API</div>
+          <h4>API layer</h4>
+          <div class="status">● implemented</div>
+          <p>A clean FastAPI surface — CORS, health check, and a single conversational endpoint — built to slot behind a bank's own gateway with no rework.</p>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">UI</div>
+          <h4>Mobile chat UI</h4>
+          <div class="status">● implemented</div>
+          <p>A polished React phone-frame chat experience — typing indicator, suggested questions, and rich transaction cards with live merchant logos.</p>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">AU</div>
+          <h4>Authentication</h4>
+          <div class="status" style="color:var(--warm)">○ prototype-scope</div>
+          <p>Security primitives (JWT, bcrypt, cryptography) are already present in the environment — wiring them into the request path is scoped, not speculative.</p>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">OB</div>
+          <h4>Observability</h4>
+          <div class="status" style="color:var(--warm)">○ prototype-scope</div>
+          <p>No tracing, metrics, or structured logging in the demo build — a fully specified plan for this is laid out in Section 09.</p>
+        </div>
+        <div class="inv-card">
+          <div class="inv-icon">SC</div>
+          <h4>Horizontal scaling</h4>
+          <div class="status" style="color:var(--warm)">○ prototype-scope</div>
+          <p>Single-process FastAPI app today — but stateless by design from day one, so scaling out is a deployment change, not a rewrite.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 08 DESIGN PRINCIPLES ============ -->
+    <section class="panel" id="principles">
+      <div class="eyebrow">Build report · Section 08</div>
+      <div class="section-head">
+        <h2>Design principles and considerations</h2>
+        <p class="lede">Five principles that shaped every architectural decision in this build.</p>
+      </div>
+
+      <div class="card">
+        <div class="principle">
+          <div class="p-name">Trustworthy</div>
+          <p style="margin:0;">Ground every financial insight in verified transaction data. The agent never answers from general knowledge about money — every claim it makes traces back to a row in the transaction dataset.</p>
+        </div>
+        <div class="principle">
+          <div class="p-name">Accurate</div>
+          <p style="margin:0;">Use deterministic backend calculations instead of relying on LLM arithmetic. Sums, averages, and comparisons are computed in pandas, not generated by the model — the LLM's job is intent recognition and explanation, never math.</p>
+        </div>
+        <div class="principle">
+          <div class="p-name">Privacy-first</div>
+          <p style="margin:0;">Apply least-privilege access and minimize exposure of sensitive financial data. Tools expose only the specific aggregation or filter needed to answer a question — never a raw data dump — bounding what any single call can return.</p>
+        </div>
+        <div class="principle">
+          <div class="p-name">Scalable</div>
+          <p style="margin:0;">Build generalized transaction and category logic rather than hardcoded merchant-specific behavior. A new merchant, category, or spending pattern is a data change, not a code change.</p>
+        </div>
+        <div class="principle">
+          <div class="p-name">Actionable</div>
+          <p style="margin:0;">Turn complex financial data into simple, understandable recommendations. Every response is designed to answer the question the user actually asked, in plain language, with the supporting transactions visible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 09 PRODUCTION INTEGRATION ============ -->
+    <section class="panel" id="production">
+      <div class="eyebrow">Build report · Section 09</div>
+      <div class="section-head">
+        <h2>Plan for integration into a real mobile banking app</h2>
+        <p class="lede">A detailed path from this working prototype to a production banking assistant, covering security, scalability, observability, release engineering, and evaluation.</p>
+      </div>
+
+      <div class="phase-nav">
+        <span class="phase-chip">Security &amp; access</span>
+        <span class="phase-chip">Scalability</span>
+        <span class="phase-chip">Observability</span>
+        <span class="phase-chip">Release engineering</span>
+        <span class="phase-chip">Governance &amp; compliance</span>
+        <span class="phase-chip">Evaluation</span>
+      </div>
+
+      <!-- Production architecture diagram -->
+      <div class="diagram" style="margin-bottom:28px;">
+        <div class="flow-tier">
+          <div class="node">
+            <div class="n-title">Banking mobile app</div>
+            <div class="n-sub">authenticated session</div>
+          </div>
+          <div class="arrow-h">→</div>
+          <div class="node ink">
+            <div class="n-title">API gateway</div>
+            <div class="n-sub">authN/authZ · rate limiting · WAF</div>
+          </div>
+          <div class="arrow-h">→</div>
+          <div class="node accent">
+            <div class="n-title">Agent service (stateless, N replicas)</div>
+            <div class="n-sub">horizontally scaled · autoscaled</div>
+          </div>
+        </div>
+
+        <div class="tier-arrow">↓</div>
+
+        <div class="flow-tier">
+          <div class="node warm">
+            <div class="n-title">Tool layer — least privilege</div>
+            <div class="n-sub">scoped tokens per tool, per user</div>
+          </div>
+        </div>
+
+        <div class="tier-arrow">↓</div>
+
+        <div class="flow-tier">
+          <div class="node">
+            <div class="n-title">Core banking APIs</div>
+            <div class="n-sub">accounts, transactions, transfers</div>
+          </div>
+          <div class="node">
+            <div class="n-title">Model provider(s)</div>
+            <div class="n-sub">primary + fallback LLM</div>
+          </div>
+        </div>
+
+        <div class="tier-arrow">↓</div>
+
+        <div class="flow-tier">
+          <div class="node ink" style="min-width:280px;">
+            <div class="n-title">Observability plane</div>
+            <div class="n-sub">logs · traces · metrics · cost &amp; quality monitors — wraps every layer above</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer-by-layer -->
+      <div class="layer">
+        <div class="layer-head"><h4>1 · Security &amp; access control</h4><span class="layer-tag">highest priority</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Deploy the agent behind the bank's existing authenticated API gateway — every request carries a verified user session, not a bare API key.</li>
+            <li>Give each tool a scoped, least-privilege credential: a "read spending summary" tool cannot initiate a transfer, and a transfer-capable tool requires an explicit step-up confirmation.</li>
+            <li>Encrypt data in transit (TLS everywhere) and at rest (encrypted data stores, encrypted logs).</li>
+            <li>Mask or tokenize PII (account numbers, names) before it reaches the LLM context whenever the raw value isn't required for the answer.</li>
+            <li>Log every tool call and its inputs/outputs to an immutable audit trail for compliance and incident response.</li>
+            <li>Rate-limit per user and per session to contain abuse and runaway agent loops.</li>
+            <li>Require explicit user confirmation before any high-risk action (transfers, payments, disputes) — the agent proposes, the user confirms.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-head"><h4>2 · Scalability &amp; resilience</h4><span class="layer-tag">handles load</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Run the agent service as a stateless, horizontally scaled deployment behind a load balancer, autoscaling on request volume and latency.</li>
+            <li>Cache frequent, non-sensitive computations (e.g. category taxonomies, merchant metadata) to cut redundant LLM and analytics calls.</li>
+            <li>Move long-running or bulk analyses (e.g. a full-year anomaly sweep) to async background processing with a status/callback pattern instead of blocking the chat request.</li>
+            <li>Configure a fallback model or provider so a primary LLM outage degrades gracefully rather than failing the whole assistant.</li>
+            <li>Apply circuit breakers and timeouts around every external call (LLM provider, core banking API) so one slow dependency can't cascade.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-head"><h4>3 · Observability</h4><span class="layer-tag">see what's happening</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Structured logging for every request: user (hashed), intent classified, tool called, latency, and outcome.</li>
+            <li>Distributed tracing across gateway → agent → tool → core banking API, so a slow or failed answer can be root-caused in one trace.</li>
+            <li>Dashboards for latency, error rate, and cost per conversation (LLM token spend), plus tool-call success/failure rates.</li>
+            <li>Model-quality monitoring: sample and review agent responses for hallucination, incorrect tool selection, and unsupported financial claims.</li>
+            <li>Alerting thresholds on error-rate spikes, latency regressions, and unusual cost growth, routed to on-call.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-head"><h4>4 · Release engineering</h4><span class="layer-tag">ship safely</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Automated test suite covering tool-contract correctness, analytics accuracy, and regression prompts for common user stories.</li>
+            <li>CI/CD pipeline that runs the suite on every change and blocks merges on failure.</li>
+            <li>Version the prompt, the tool schema, and the model together as a single deployable unit — never change one without tracking the others.</li>
+            <li>Canary or staged rollouts for prompt/model changes, comparing quality and cost against the previous version before full rollout.</li>
+            <li>A documented rollback path to the last known-good prompt/model/tool version if a release regresses.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-head"><h4>5 · Data governance &amp; compliance</h4><span class="layer-tag">regulatory</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Explicit data retention policy for conversation history and logs, aligned with the bank's regulatory obligations.</li>
+            <li>Role-based access control over who — human or service — can view raw transaction data versus aggregated outputs.</li>
+            <li>Clear boundary on what leaves the bank's environment: no raw PII sent to an external model provider without a data-processing agreement and masking in place.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-head"><h4>6 · Continuous evaluation</h4><span class="layer-tag">before &amp; after launch</span></div>
+        <div class="layer-body">
+          <ul>
+            <li>Pre-deployment evaluation set covering accuracy, hallucination rate, tool-selection correctness, and security probes (prompt injection, data exfiltration attempts).</li>
+            <li>Fairness checks across user segments to ensure spending insights and language don't skew unhelpfully for any group.</li>
+            <li>Ongoing production sampling to catch drift — new merchants, new spending patterns, or model updates that change behavior unexpectedly.</li>
+            <li>A defined financial-risk failure taxonomy (see table below) reviewed on a regular cadence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h3 style="font-size:18px;margin-bottom:10px;">Production readiness checklist</h3>
+      <div class="card" style="margin-bottom:28px;">
+        <div class="checklist">
+          <div class="check-item"><div class="box"></div>Authenticated API gateway in front of the agent</div>
+          <div class="check-item"><div class="box"></div>Least-privilege, scoped tool credentials</div>
+          <div class="check-item"><div class="box"></div>TLS in transit, encryption at rest</div>
+          <div class="check-item"><div class="box"></div>PII masking before LLM context</div>
+          <div class="check-item"><div class="box"></div>Immutable audit logging</div>
+          <div class="check-item"><div class="box"></div>Per-user and per-session rate limiting</div>
+          <div class="check-item"><div class="box"></div>Confirmation step for high-risk actions</div>
+          <div class="check-item"><div class="box"></div>Stateless, autoscaled agent service</div>
+          <div class="check-item"><div class="box"></div>Primary + fallback model routing</div>
+          <div class="check-item"><div class="box"></div>Distributed tracing end-to-end</div>
+          <div class="check-item"><div class="box"></div>Latency, error, and cost dashboards</div>
+          <div class="check-item"><div class="box"></div>CI/CD with automated regression suite</div>
+          <div class="check-item"><div class="box"></div>Versioned prompt + model + tool bundles</div>
+          <div class="check-item"><div class="box"></div>Canary rollout and rollback path</div>
+          <div class="check-item"><div class="box"></div>Data retention &amp; access-control policy</div>
+          <div class="check-item"><div class="box"></div>Pre- and post-launch evaluation harness</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px;margin-bottom:10px;">Failure modes to evaluate against</h3>
+      <div class="card">
+        <table class="risk-table">
+          <thead>
+            <tr><th>Failure mode</th><th>Example</th><th>Severity</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hallucinated figure</td>
+              <td>Agent states a spending total not backed by a tool result</td>
+              <td class="sev sev-high">High</td>
+            </tr>
+            <tr>
+              <td>Wrong tool selected</td>
+              <td>A trend question answered with a single-period aggregation</td>
+              <td class="sev sev-med">Medium</td>
+            </tr>
+            <tr>
+              <td>PII leakage</td>
+              <td>Full account number surfaced in a response or log unmasked</td>
+              <td class="sev sev-high">High</td>
+            </tr>
+            <tr>
+              <td>Unconfirmed high-risk action</td>
+              <td>A transfer or dispute executed without explicit user confirmation</td>
+              <td class="sev sev-high">High</td>
+            </tr>
+            <tr>
+              <td>Prompt injection via transaction data</td>
+              <td>A malicious merchant name attempts to alter agent instructions</td>
+              <td class="sev sev-high">High</td>
+            </tr>
+            <tr>
+              <td>Latency regression</td>
+              <td>A prompt/model change increases response time beyond SLA</td>
+              <td class="sev sev-med">Medium</td>
+            </tr>
+            <tr>
+              <td>Cost drift</td>
+              <td>Token usage per conversation grows unnoticed after a prompt change</td>
+              <td class="sev sev-med">Medium</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // ---- Tab switching ----
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add('active');
+      window.scrollTo({top:0, behavior:'instant'});
+      if(btn.dataset.target === 'summary'){ playSummaryIntro(); }
+    });
+  });
+
+  // ---- Executive summary entrance: replay reveal + count-up numbers ----
+  function playSummaryIntro(){
+    const summary = document.getElementById('summary');
+    const revealEls = summary.querySelectorAll('.reveal');
+    revealEls.forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetWidth; // force reflow so the animation can replay
+      el.style.animation = '';
+    });
+    summary.querySelectorAll('.num[data-count]').forEach(el => animateCount(el));
+  }
+
+  function animateCount(el){
+    const target = parseInt(el.dataset.count, 10);
+    const duration = 900;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if(progress < 1){ requestAnimationFrame(tick); }
+      else { el.textContent = target; }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Play once on initial load, since Executive Summary is the default active panel
+  window.addEventListener('DOMContentLoaded', playSummaryIntro);
+
+  // ---- Raw requirements.txt content ----
+  const rawReq = `aiobotocore, aiofiles, aiohttp, aioitertools, aiosignal, aiosqlite, alabaster, anaconda-anon-usage, anaconda-catalogs, anaconda-client, anaconda-cloud-auth, anaconda-navigator, anaconda-project, annotated-doc==0.0.4, annotated-types==0.8.0, anyio==4.15.1, appdirs==1.4.4, applaunchservices, appnope, appscript, argon2-cffi, argon2-cffi-bindings, arrow, astroid, astropy, asttokens, async-timeout, atomicwrites==1.4.0, attrs, Automat, autopep8, Babel, backcall, backports.functools-lru-cache, backports.tempfile, backports.weakref==1.0.post1, bcrypt, beautifulsoup4, binaryornot, bioc==2.1, black, bleach, bokeh, boltons, botocore, Bottleneck, brotlipy==0.7.0, browser-cookie3==0.20.1, certifi, cffi, chardet, charset-normalizer, click==8.3.3, cloudpickle, clyent==1.2.2, colorama, colorcet, comm, conda, conda-build, conda-content-trust, conda-libmamba-solver, conda-pack, conda-package-handling, conda-repo-cli==1.0.75, conda-token, conda-verify==3.4.2, conda_index, conda_package_streaming, constantly==15.1.0, contourpy, cookiecutter, cryptography, cssselect==1.1.0, cycler, cytoolz, dask, datasets, datashader, datashape==0.5.4, debugpy, decorator, defusedxml, diff-match-patch, dill, distributed, distro==1.9.0, docopt==0.6.2, docstring-to-markdown, docutils, entrypoints, et-xmlfile==1.1.0, executing, fastapi==0.141.1, fastjsonschema, filelock==3.29.0, flake8, Flask, fonttools==4.25.0, frozenlist, fsspec==2026.4.0, future, gensim, glob2, gmpy2, google-auth==2.58.0, google-genai==2.22.0, greenlet, h11==0.16.0, h5py, HeapDict, hf-xet==1.5.0, holoviews, httpcore==1.0.9, httpx==0.28.1, huggingface_hub==1.13.0, hvplot, hyperlink, idna, imagecodecs, imageio, imagesize, imbalanced-learn, importlib-metadata, incremental, inflection==0.5.1, iniconfig, intake, intervaltree, ipykernel, ipython, ipython-genutils, ipywidgets, isort, itemadapter, itemloaders, itsdangerous, jaraco.classes, jedi, jellyfish, Jinja2, jinja2-time, jmespath, joblib, json5, jsonlines==4.0.0, jsonpatch, jsonpointer==2.1, jsonschema, jupyter, jupyter-console, jupyter-events, jupyter-server, jupyter-ydoc, jupyter_client, jupyter_core, jupyter_server_fileid, jupyter_server_ydoc, jupyterlab, jupyterlab-pygments, jupyterlab-widgets, jupyterlab_server, kaleido, keyring, kiwisolver, lazy-object-proxy, lazy_loader, libarchive-c, libmambapy, linkify-it-py, llvmlite, lmdb, locket, lxml, lz4, Markdown, markdown-it-py, MarkupSafe, matplotlib, matplotlib-inline, mccabe, mdit-py-plugins, mdurl, mistune, more-itertools, mpmath, msgpack, multidict, multipledispatch, multiprocess, munkres==1.1.4, mypy-extensions, navigator-updater, nbclassic, nbclient, nbconvert, nbformat, nest-asyncio, networkx, nltk, notebook, notebook_shim, numba, numexpr, numpy, numpydoc, openpyxl==3.0.10, packaging==26.2, pandas, pandocfilters, panel, param, parsel, parso, partd, pathlib, pathspec, patsy==0.5.3, pep8==1.7.1, pexpect, pickleshare, Pillow, pkce, pkginfo, platformdirs, plotly, pluggy, ply==3.11, poyo, prometheus-client, prompt-toolkit, Protego, psutil, ptyprocess, pure-eval, py-cpuinfo, pyarrow==11.0.0, pyasn1, pyasn1-modules==0.2.8, pycodestyle, pycosat, pycparser, pycryptodomex==3.23.0, pyct, pycurl, pydantic==2.13.5, pydantic_core==2.46.5, PyDispatcher==2.0.5, pydocstyle, pyerfa, pyflakes, Pygments, PyJWT, pylint, pylint-venv, pyls-spyder==0.4.0, pyobjc-core, pyobjc-framework-Cocoa, pyobjc-framework-CoreServices, pyobjc-framework-FSEvents, pyodbc, pyOpenSSL, pyparsing, PyQt5-sip==12.11.0, pyrsistent, PySocks, pytest, python-dateutil, python-dotenv, python-json-logger, python-lsp-black, python-lsp-jsonrpc==1.0.0, python-lsp-server, python-slugify, python-snappy, pytoolconfig, pytz, pyviz-comms, PyWavelets, PyYAML, pyzmq, QDarkStyle, qstylizer, QtAwesome, qtconsole, QtPy, queuelib==1.5.0, regex, requests, requests-file, requests-toolbelt, responses, rfc3339-validator, rfc3986-validator, rich==15.0.0, rope, Rtree, ruamel-yaml-conda, ruamel.yaml, s3fs, safetensors, scikit-image, scikit-learn, scipy, Scrapy, seaborn, Send2Trash, service-identity, shellingham==1.5.4, sip, six, smart-open, sniffio, snowballstemmer, sortedcontainers, soupsieve, Sphinx, sphinxcontrib-applehelp, sphinxcontrib-devhelp, sphinxcontrib-htmlhelp, sphinxcontrib-jsmath, sphinxcontrib-qthelp, sphinxcontrib-serializinghtml, spyder, spyder-kernels, SQLAlchemy, stack-data, starlette==1.6.0, statsmodels, sympy, tables, tabulate, tblib, tenacity==9.1.4, terminado, text-unidecode, textdistance, threadpoolctl, three-merge, tifffile, tinycss2, tldextract, tokenizers, toml, tomlkit, toolz, tornado, tqdm, traitlets, transformers, Twisted, typer==0.25.1, typing-inspection==0.4.4, typing_extensions==4.16.0, tzdata, uc-micro-py, ujson, Unidecode, urllib3, uvicorn==0.52.4, w3lib, watchdog, wcwidth, webencodings==0.5.1, websocket-client, websockets==16.1.1, Werkzeug, whatthepatch, widgetsnbextension, wrapt, wurlitzer, xarray, xlwings, xxhash, xyzservices, y-py, yapf, yarl, ypy-websocket, zict, zipp, zope.interface, zstandard`;
+  document.getElementById('raw-req-block').textContent = rawReq.split(', ').join('\n');
+</script>
+
+</body>
+</html>
