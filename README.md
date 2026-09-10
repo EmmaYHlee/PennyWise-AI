@@ -1,13 +1,15 @@
 # PennyWise AI
 
 PennyWise AI is a prototype mobile banking experience with a conversational financial coach. The React interface presents sample account activity, savings progress, and recent transactions inside a mock smartphone frame. From the **Ask PennyWise** panel, a user can ask natural-language questions about the included transaction dataset, such as spending by category, recurring charges, or unusual transactions.
-\n
-The following Interactive Build Report provides a detailed overview of the project's product design, architecture, implementation, user stories, data flow, and production considerations.
+
+
 ```
 pennywise_build_report.html
 ```
-The report is a self-contained HTML document designed to be viewed directly in a web browser.
-\n 
+- The above Interactive Build Report provides a detailed overview of the project's product design, architecture, implementation, user stories, data flow, and production considerations.
+- The report is a self-contained HTML document designed to be viewed directly in a web browser.
+
+
 Watch the PennyWise AI demo to see the conversational finance assistant in action:
 
 ## What PennyWise AI can do
