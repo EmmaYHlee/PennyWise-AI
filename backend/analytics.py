@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pandas as pd
 from decimal import Decimal, ROUND_HALF_UP
 """
@@ -23,6 +26,13 @@ def load_transactions(
     df = pd.read_csv(path)
     df["date"] = pd.to_datetime(df["date"])
     return df
+
+
+def get_account() -> dict:
+    """Load the current sample account record used by the backend."""
+    account_path = Path(__file__).resolve().parent.parent / "data" / "account.json"
+    with account_path.open() as account_file:
+        return json.load(account_file)
 
 def get_data_coverage(df: pd.DataFrame | None = None) -> dict:
     if df is None:
@@ -91,12 +101,13 @@ def get_savings_goal_progress(
 
 
 def forecast_end_of_month_balance(
-    current_balance: float,
     df: pd.DataFrame | None = None,
 ) -> dict:
     """Project month-end balance from the latest month's recorded daily spending rate."""
     if df is None:
         df = load_transactions()
+
+    current_balance = float(get_account()["balance"])
 
     latest_date = df["date"].max()
     month_expenses = df.loc[
