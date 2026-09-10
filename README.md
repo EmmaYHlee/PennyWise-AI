@@ -13,7 +13,9 @@ pennywise_build_report.html
 ```
 
 - Watch the PennyWise AI demo to see the conversational finance assistant in action:
-
+```
+https://drive.google.com/file/d/1scTNTU9JmewElliXFbpBX7yK544T4EHe/view?usp=drive_link
+```
 
 ### Make spending instantly understandable
 
