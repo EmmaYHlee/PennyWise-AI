@@ -1,5 +1,4 @@
 import os
-import re
 from calendar import month_name
 
 from dotenv import load_dotenv
@@ -243,13 +242,7 @@ TOOL_DECLARATIONS = [
         ),
         parameters=types.Schema(
             type="OBJECT",
-            properties={
-                "current_balance": types.Schema(
-                    type="NUMBER",
-                    description="The current account balance to project from.",
-                ),
-            },
-            required=["current_balance"],
+            properties={},
         ),
     ),
 ]
@@ -347,99 +340,21 @@ Examples:
 - Give concise, clear answers.
 - When a user asks whether they are on track for a savings goal but has not
   provided the monthly goal amount, ask for that amount before calculating.
+- If the previous assistant message asked for a savings goal and the user then
+  replies with an amount, treat that amount as the monthly goal and call
+  savings_goal_progress.
 - For a savings-goal check, use savings_goal_progress. Explain that savings is
   calculated as recorded income minus expenses, state the month used, and do
   not treat a month without recorded income as a complete financial picture.
 - For an end-of-month balance prediction, use end_of_month_balance_forecast
-  with the available account balance of 8416.52. State the as-of date, the
-  projected balance, and that future income and transfers are excluded.
+  and state the as-of date, projected balance, and that future income and
+  transfers are excluded.
 """
-
-
-ACCOUNT_BALANCE = 8416.52
-SAVINGS_GOAL_PROMPT = (
-    "What is your monthly savings goal? Share an amount, such as **$500**, "
-    "and I’ll compare it with the available recorded income and expenses."
-)
-
-
-def _format_currency(amount: float) -> str:
-    return f"${amount:,.2f}"
-
-
-def _goal_amount_from_message(message: str) -> float | None:
-    match = re.search(r"\$?\s*(\d[\d,]*(?:\.\d{1,2})?)", message)
-    return float(match.group(1).replace(",", "")) if match else None
-
-
-def _awaiting_savings_goal(history: list[dict]) -> bool:
-    return bool(history) and history[-1]["content"] == SAVINGS_GOAL_PROMPT
-
-
-def _savings_goal_response(goal_amount: float) -> dict:
-    progress = tools.savings_goal_progress(goal_amount=goal_amount)
-    if not progress["available"]:
-        return {
-            "response": (
-                "I can’t calculate savings progress from the available data. "
-                f"The data runs from {progress['data_start']} to {progress['data_end']}."
-            )
-        }
-
-    year, month = progress["month"].split("-", maxsplit=1)
-    difference = progress["difference"]
-    status = "on track" if progress["on_track"] else "behind"
-    gap = abs(difference)
-    return {
-        "response": (
-            f"Using the most recent month with recorded income, **{month_name[int(month)]} {year}**, "
-            f"your recorded net savings were **{_format_currency(progress['net_savings'])}** "
-            f"({_format_currency(progress['income'])} income − "
-            f"{_format_currency(progress['expenses'])} expenses). Your monthly goal is "
-            f"**{_format_currency(progress['goal_amount'])}**, so you are **{_format_currency(gap)} {status}**. "
-            "This calculation uses only the available recorded transactions."
-        )
-    }
-
-
-def _end_of_month_forecast_response() -> dict:
-    forecast = tools.end_of_month_balance_forecast(
-        current_balance=ACCOUNT_BALANCE,
-    )
-    as_of = date.fromisoformat(forecast["as_of_date"])
-    return {
-        "response": (
-            f"Based on spending recorded through **{as_of.strftime('%B %-d, %Y')}**, "
-            f"your projected end-of-month balance is **{_format_currency(forecast['forecast_balance'])}**. "
-            f"That assumes daily expenses continue at **{_format_currency(forecast['daily_spend_rate'])}** "
-            f"for the remaining {forecast['days_remaining']} days, starting from the available "
-            f"balance of **{_format_currency(forecast['current_balance'])}**. "
-            "Future income and transfers are excluded from this estimate."
-        )
-    }
 
 
 def chat(message: str, history: list[dict] | None = None) -> dict:
     if history is None:
         history = []
-
-    message_lower = message.lower()
-    goal_amount = _goal_amount_from_message(message)
-    is_savings_goal_question = "savings goal" in message_lower
-
-    if is_savings_goal_question and goal_amount is None:
-        return {"response": SAVINGS_GOAL_PROMPT}
-
-    if goal_amount is not None and (
-        is_savings_goal_question or _awaiting_savings_goal(history)
-    ):
-        return _savings_goal_response(goal_amount)
-
-    if (
-        "end-of-month balance" in message_lower
-        or "end of month balance" in message_lower
-    ):
-        return _end_of_month_forecast_response()
 
     contents = []
 
