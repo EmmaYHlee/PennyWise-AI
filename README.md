@@ -1,6 +1,14 @@
 # PennyWise AI
 
 PennyWise AI is a prototype mobile banking experience with a conversational financial coach. The React interface presents sample account activity, savings progress, and recent transactions inside a mock smartphone frame. From the **Ask PennyWise** panel, a user can ask natural-language questions about the included transaction dataset, such as spending by category, recurring charges, or unusual transactions.
+\n
+The following Interactive Build Report provides a detailed overview of the project's product design, architecture, implementation, user stories, data flow, and production considerations.
+```
+pennywise_build_report.html
+```
+The report is a self-contained HTML document designed to be viewed directly in a web browser.
+\n 
+Watch the PennyWise AI demo to see the conversational finance assistant in action:
 
 ## What PennyWise AI can do
 
@@ -81,39 +89,6 @@ The diagram below covers both flows in the prototype:
 2. **Live chat:** the React app retains local history, sends the current message to FastAPI, and receives an answer from the PennyWise agent. For a natural-language transaction filter, Gemini first calls `transaction_categories()` to discover the current dataset metadata, then calls `list_transactions()` with an exact category/subcategory filter. The generic tool includes `logo_url` only when `include_logo=true`, so the UI can render merchant logos without category-specific code.
 3. **Live-only responses:** the browser never manufactures a financial answer. If the API is unavailable, the UI displays a connection error and retry control; all assistant responses originate in the backend.
 
-```mermaid
-flowchart TB
-    subgraph Preparation[Offline data preparation]
-        RAW[(sample_transactions.csv)] --> ENRICH[scripts/enrich_transactions.py]
-        TAX[Controlled taxonomy and merchant rules] --> ENRICH
-        OPENAI[Optional OpenAI classification refinement] -. only with --use-llm .-> ENRICH
-        ENRICH --> DATA[(enriched_transactions.csv)]
-        ENRICH --> PROFILE[data_profile.json]
-    end
-
-    subgraph Client[Browser: React + Vite]
-        USER[User] --> HOME[BankingHome and PhoneFrame]
-        HOME --> CHAT[Chat, Message, SuggestedQuestions]
-        CHAT --> CLIENT[services/api.js\nmessage + in-memory history]
-    end
-
-    CLIENT -->|POST /chat| API[FastAPI main.py\nChatRequest / ChatResponse]
-    API --> AGENT[agent.py\nPennyWise system prompt + function-call loop]
-    AGENT <-->|GenerateContent: prompt, history, tool calls| GEMINI[Google Gemini]
-    AGENT --> META[transaction_categories()\nCurrent category/subcategory metadata]
-    AGENT --> LIST[list_transactions()\nExact filters + include_logo + return_all]
-    META --> ANALYTICS[analytics.py\nPandas deterministic calculations]
-    LIST --> ANALYTICS
-    AGENT --> TOOLS[Other safe analytics tool dispatch]
-    TOOLS --> ANALYTICS
-    ANALYTICS --> DATA
-    TOOLS -->|Structured tool result| AGENT
-    AGENT -->|Natural-language answer| API
-    API -->|JSON response| CLIENT
-    CLIENT --> CHAT
-```
-
-The editable Mermaid diagram above and the portable [SVG diagram](docs/architecture.svg) describe the same system.
 
 ## Repository structure
 
