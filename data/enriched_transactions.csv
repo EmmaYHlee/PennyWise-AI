@@ -1,0 +1,301 @@
+transaction_description,amount,date,merchant,merchant_domain,logo_url,category,subcategory,transaction_type,is_recurring,recurrence_confidence
+WIRE TRANSFER FEE 9986237,5.9,2026-01-28,Wire Transfer Fee,,,Banking Fees,Transfer Fee,expense,False,0.95
+UBER *TRIP 3960684,51.9,2026-01-28,Uber,uber.com,https://logos.hunter.io/uber.com,Transportation,Rideshare,expense,False,0.9
+LYFT *RIDE 8923994,110.26,2026-01-30,Lyft,lyft.com,https://logos.hunter.io/lyft.com,Transportation,Rideshare,expense,False,0.95
+WIRE TRANSFER 1615030,2103.68,2026-01-30,Wire Transfer,,,Transfers,Bank Transfer,transfer,False,0.95
+GOODRX 8334615,79.29,2026-01-31,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+STUBHUB 188100,135.22,2026-01-31,StubHub,stubhub.com,https://logos.hunter.io/stubhub.com,Entertainment,Events,expense,False,0.95
+VENMO *PAYMENT 4248725,194.49,2026-02-01,Venmo,venmo.com,https://logos.hunter.io/venmo.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+WALMART GROCERY AUSTIN TX,167.22,2026-02-01,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+DAVE & BUSTERS MIAMI FL,80.16,2026-02-02,Dave & Buster's,daveandbusters.com,https://logos.hunter.io/daveandbusters.com,Entertainment,Events,expense,False,0.95
+GOOGLE *PLAY 7668671,129.9,2026-02-02,Google Play,play.google.com,https://logos.hunter.io/play.google.com,Entertainment,Gaming,expense,False,0.95
+CON EDISON UTILITY 7784678,1909.6,2026-02-03,Con Edison,coned.com,https://logos.hunter.io/coned.com,Utilities,Electricity,expense,False,0.7
+AT&T *PAYMENT 7089166,1778.3,2026-02-03,AT&T,att.com,https://logos.hunter.io/att.com,Utilities,Mobile & Internet,expense,False,0.7
+REXALL 6789 HOUSTON TX,6.2,2026-02-05,Rexall,rexall.ca,https://logos.hunter.io/rexall.ca,Healthcare,Pharmacy,expense,False,0.95
+LATE PAYMENT FEE,8.52,2026-02-08,Late Payment Fee,,,Banking Fees,Late Fee,expense,False,0.95
+SPOTIFY USA 7206470,16.1,2026-02-09,Spotify,spotify.com,https://logos.hunter.io/spotify.com,Subscriptions,Digital Services,expense,True,0.85
+TICKETMASTER 9622639,67.92,2026-02-09,Ticketmaster,ticketmaster.com,https://logos.hunter.io/ticketmaster.com,Entertainment,Events,expense,False,0.95
+ZELLE TRANSFER 1122698,1905.49,2026-02-10,Zelle,zellepay.com,https://logos.hunter.io/zellepay.com,Transfers,Bank Transfer,transfer,False,0.9
+DISNEY PLUS 585654,5.22,2026-02-10,Disney+,disneyplus.com,https://logos.hunter.io/disneyplus.com,Entertainment,Streaming,expense,True,0.85
+NATIONAL GRID GAS 8536654,3552.34,2026-02-10,National Grid,nationalgridus.com,https://logos.hunter.io/nationalgridus.com,Utilities,Gas Utility,expense,True,0.85
+MTA NYC TRANSIT 2130113,13.32,2026-02-12,MTA,mta.info,https://logos.hunter.io/mta.info,Transportation,Public Transit,expense,False,0.95
+SHELL OIL 941 SAN FRANCISCO CA,5.55,2026-02-12,Shell,shell.com,https://logos.hunter.io/shell.com,Transportation,Gas,expense,False,0.95
+WALMART GROCERY VANCOUVER BC,18.18,2026-02-12,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+SHOPPERS DRUG MART CALGARY AB,12.21,2026-02-14,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+SHAKE SHACK BOSTON MA,34.28,2026-02-14,Shake Shack,shakeshack.com,https://logos.hunter.io/shakeshack.com,Dining,Restaurant,expense,False,0.95
+LYFT *RIDE 7418550,3.1,2026-02-15,Lyft,lyft.com,https://logos.hunter.io/lyft.com,Transportation,Rideshare,expense,False,0.95
+KAISER PERMANENTE RX 6286390,231.07,2026-02-15,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+EXXONMOBIL LOS ANGELES CA,103.49,2026-02-16,ExxonMobil,exxonmobil.com,https://logos.hunter.io/exxonmobil.com,Transportation,Gas,expense,False,0.95
+AMZN MKTP US*6374032,172.54,2026-02-16,Amazon,amazon.com,https://logos.hunter.io/amazon.com,Shopping,Online Retail,expense,False,0.95
+WALMART PHARMACY SAN FRANCISCO CA,182.48,2026-02-16,Walmart Pharmacy,walmart.com,https://logos.hunter.io/walmart.com,Healthcare,Pharmacy,expense,False,0.95
+LOWES #3056 EDMONTON AB,293.57,2026-02-16,Lowe's,lowes.com,https://logos.hunter.io/lowes.com,Housing,Home Improvement,expense,False,0.95
+AMC THEATRES HOUSTON TX,155.21,2026-02-17,AMC Theatres,amctheatres.com,https://logos.hunter.io/amctheatres.com,Entertainment,Movies,expense,False,0.95
+TICKETMASTER 2263449,67.71,2026-02-17,Ticketmaster,ticketmaster.com,https://logos.hunter.io/ticketmaster.com,Entertainment,Events,expense,False,0.95
+TRANSFER TO CHECKING 7642969,278.34,2026-02-20,Transfer to Checking,,,Transfers,Bank Transfer,transfer,False,0.95
+NETFLIX.COM 1438687,46.51,2026-02-21,Netflix,netflix.com,https://logos.hunter.io/netflix.com,Entertainment,Streaming,expense,True,0.85
+NETFLIX.COM 3844854,6.59,2026-02-22,Netflix,netflix.com,https://logos.hunter.io/netflix.com,Entertainment,Streaming,expense,True,0.85
+XBOX *GAMEPASS 6327905,60.59,2026-02-22,Xbox Game Pass,xbox.com,https://logos.hunter.io/xbox.com,Entertainment,Gaming,expense,True,0.85
+DOORDASH*3097281,30.09,2026-02-23,DoorDash,doordash.com,https://logos.hunter.io/doordash.com,Dining,Delivery,expense,False,0.95
+WAYFAIR 2770896,1434.2,2026-02-23,Wayfair,wayfair.com,https://logos.hunter.io/wayfair.com,Shopping,Online Retail,expense,False,0.95
+SOBEYS CALGARY AB,143.75,2026-02-23,Sobeys,sobeys.com,https://logos.hunter.io/sobeys.com,Groceries,Grocery Store,expense,False,0.95
+PAPER STATEMENT FEE,14.5,2026-02-24,Paper Statement Fee,,,Banking Fees,Account Fee,expense,False,0.9
+GOODRX 292619,162.45,2026-02-25,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+TRANSFER TO CHECKING 2915034,1310.44,2026-02-25,Transfer to Checking,,,Transfers,Bank Transfer,transfer,False,0.95
+PETRO-CANADA SAN FRANCISCO CA,13.58,2026-02-26,Petro-Canada,petro-canada.ca,https://logos.hunter.io/petro-canada.ca,Transportation,Gas,expense,False,0.95
+LATE PAYMENT FEE,42.96,2026-02-27,Late Payment Fee,,,Banking Fees,Late Fee,expense,False,0.95
+AUDIBLE*9037326,39.03,2026-02-28,Audible,audible.com,https://logos.hunter.io/audible.com,Subscriptions,Digital Services,expense,True,0.85
+XBOX *GAMEPASS 9383822,24.59,2026-02-28,Xbox Game Pass,xbox.com,https://logos.hunter.io/xbox.com,Entertainment,Gaming,expense,True,0.85
+HULU 8243903,8.44,2026-03-01,Hulu,hulu.com,https://logos.hunter.io/hulu.com,Entertainment,Streaming,expense,True,0.85
+SUBWAY 7322 LOS ANGELES CA,18.84,2026-03-01,Subway,subway.com,https://logos.hunter.io/subway.com,Dining,Fast Food,expense,False,0.95
+SOBEYS HOUSTON TX,340.58,2026-03-02,Sobeys,sobeys.com,https://logos.hunter.io/sobeys.com,Groceries,Grocery Store,expense,False,0.95
+PLAYSTATION NETWORK 3321313,18.5,2026-03-03,PlayStation Network,playstation.com,https://logos.hunter.io/playstation.com,Entertainment,Gaming,expense,False,0.9
+TICKETMASTER 2136124,155.96,2026-03-03,Ticketmaster,ticketmaster.com,https://logos.hunter.io/ticketmaster.com,Entertainment,Events,expense,False,0.95
+BEST BUY 9022 AUSTIN TX,1852.27,2026-03-04,Best Buy,bestbuy.com,https://logos.hunter.io/bestbuy.com,Shopping,Electronics,expense,False,0.95
+TARGET GROCERY HOUSTON TX,393.02,2026-03-04,Target,target.com,https://logos.hunter.io/target.com,Groceries,Grocery Store,expense,False,0.95
+SHELL OIL 9864 NEW YORK NY,99.48,2026-03-05,Shell,shell.com,https://logos.hunter.io/shell.com,Transportation,Gas,expense,False,0.95
+DAVE & BUSTERS CHICAGO IL,124.13,2026-03-07,Dave & Buster's,daveandbusters.com,https://logos.hunter.io/daveandbusters.com,Entertainment,Events,expense,False,0.95
+AMAZON PRIME*1895765,37.18,2026-03-07,Amazon Prime,amazon.com,https://logos.hunter.io/amazon.com,Subscriptions,Membership,expense,False,0.7
+VENMO *PAYMENT 6917881,3051.81,2026-03-07,Venmo,venmo.com,https://logos.hunter.io/venmo.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+IKEA EDMONTON AB,850.32,2026-03-07,IKEA,ikea.com,https://logos.hunter.io/ikea.com,Housing,Furniture,expense,False,0.95
+CHICK-FIL-A WINNIPEG MB,38.61,2026-03-07,Chick-fil-A,chick-fil-a.com,https://logos.hunter.io/chick-fil-a.com,Dining,Fast Food,expense,False,0.9
+PAYROLL DEPOSIT 9291766,996.85,2026-03-08,Payroll Deposit,,,Income,Payroll,income,False,0.95
+CHATGPT SUBSCRIPTION 4540025,31.06,2026-03-08,ChatGPT,openai.com,https://logos.hunter.io/openai.com,Subscriptions,Software,expense,False,0.7
+SUBWAY 6393 WINNIPEG MB,11.92,2026-03-08,Subway,subway.com,https://logos.hunter.io/subway.com,Dining,Fast Food,expense,False,0.95
+ALDI 8417 WINNIPEG MB,23.94,2026-03-09,ALDI,aldi.us,https://logos.hunter.io/aldi.us,Groceries,Grocery Store,expense,False,0.9
+MTA NYC TRANSIT 3685314,40.95,2026-03-11,MTA,mta.info,https://logos.hunter.io/mta.info,Transportation,Public Transit,expense,False,0.95
+AMC THEATRES AUSTIN TX,27.97,2026-03-12,AMC Theatres,amctheatres.com,https://logos.hunter.io/amctheatres.com,Entertainment,Movies,expense,False,0.95
+COSTCO WHSE NEW YORK NY,252.54,2026-03-12,Costco,costco.com,https://logos.hunter.io/costco.com,Groceries,Grocery Store,expense,False,0.95
+AMC THEATRES EDMONTON AB,112.83,2026-03-12,AMC Theatres,amctheatres.com,https://logos.hunter.io/amctheatres.com,Entertainment,Movies,expense,False,0.95
+VIA RAIL 2003351,3.18,2026-03-15,VIA Rail,viarail.ca,https://logos.hunter.io/viarail.ca,Transportation,Rail,expense,False,0.95
+GEICO INSURANCE 8035169,2864.66,2026-03-16,GEICO,geico.com,https://logos.hunter.io/geico.com,Insurance,Insurance,expense,False,0.7
+NETFLIX.COM 1933230,9.49,2026-03-16,Netflix,netflix.com,https://logos.hunter.io/netflix.com,Entertainment,Streaming,expense,True,0.85
+LOWES #8479 HOUSTON TX,1819.88,2026-03-16,Lowe's,lowes.com,https://logos.hunter.io/lowes.com,Housing,Home Improvement,expense,False,0.95
+TARGET GROCERY OTTAWA ON,405.73,2026-03-17,Target,target.com,https://logos.hunter.io/target.com,Groceries,Grocery Store,expense,False,0.95
+SHELL OIL 1351 OTTAWA ON,43.59,2026-03-17,Shell,shell.com,https://logos.hunter.io/shell.com,Transportation,Gas,expense,False,0.95
+WALGREENS 3924 SAN FRANCISCO CA,154.59,2026-03-18,Walgreens,walgreens.com,https://logos.hunter.io/walgreens.com,Healthcare,Pharmacy,expense,False,0.95
+PETRO-CANADA AUSTIN TX,7.0,2026-03-18,Petro-Canada,petro-canada.ca,https://logos.hunter.io/petro-canada.ca,Transportation,Gas,expense,False,0.95
+STARBUCKS #5564 AUSTIN TX,60.23,2026-03-20,Starbucks,starbucks.com,https://logos.hunter.io/starbucks.com,Dining,Coffee,expense,False,0.95
+NIKE.COM 2828882,376.09,2026-03-21,Nike,nike.com,https://logos.hunter.io/nike.com,Shopping,Clothing,expense,False,0.95
+AMC THEATRES PHOENIX AZ,133.47,2026-03-21,AMC Theatres,amctheatres.com,https://logos.hunter.io/amctheatres.com,Entertainment,Movies,expense,False,0.95
+TIM HORTONS #625 ATLANTA GA,12.93,2026-03-22,Tim Hortons,timhortons.com,https://logos.hunter.io/timhortons.com,Dining,Coffee,expense,False,0.9
+MCDONALDS F3972 MIAMI FL,28.16,2026-03-22,McDonald's,mcdonalds.com,https://logos.hunter.io/mcdonalds.com,Dining,Fast Food,expense,False,0.95
+REGAL CINEMAS LOS ANGELES CA,34.52,2026-03-22,Regal Cinemas,regmovies.com,https://logos.hunter.io/regmovies.com,Entertainment,Movies,expense,False,0.95
+ATM WITHDRAWAL FEE 633224,1.09,2026-03-23,ATM Withdrawal Fee,,,Banking Fees,ATM Fee,expense,False,0.95
+TARGET GROCERY VANCOUVER BC,88.58,2026-03-24,Target,target.com,https://logos.hunter.io/target.com,Groceries,Grocery Store,expense,False,0.95
+LOBLAWS 6965 EDMONTON AB,284.29,2026-03-24,Loblaws,loblaws.ca,https://logos.hunter.io/loblaws.ca,Groceries,Grocery Store,expense,False,0.9
+KAISER PERMANENTE RX 1929622,80.43,2026-03-24,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+THE HOME DEPOT 1388 TORONTO ON,1301.72,2026-03-24,The Home Depot,homedepot.com,https://logos.hunter.io/homedepot.com,Housing,Home Improvement,expense,False,0.95
+PARAMOUNT+ 7315376,18.15,2026-03-26,Paramount+,paramountplus.com,https://logos.hunter.io/paramountplus.com,Entertainment,Streaming,expense,True,0.85
+COSTCO WHSE EDMONTON AB,21.66,2026-03-27,Costco,costco.com,https://logos.hunter.io/costco.com,Groceries,Grocery Store,expense,False,0.95
+PARAMOUNT+ 9937875,8.49,2026-03-27,Paramount+,paramountplus.com,https://logos.hunter.io/paramountplus.com,Entertainment,Streaming,expense,True,0.85
+PARAMOUNT+ 1240194,32.12,2026-03-28,Paramount+,paramountplus.com,https://logos.hunter.io/paramountplus.com,Entertainment,Streaming,expense,True,0.85
+APPLE.COM/BILL ICLOUD,5.77,2026-03-28,Apple,apple.com,https://logos.hunter.io/apple.com,Subscriptions,Software,expense,True,0.85
+SHOPPERS DRUG MART MONTREAL QC,176.58,2026-03-28,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+ZARA US EDMONTON AB,929.47,2026-03-28,Zara,zara.com,https://logos.hunter.io/zara.com,Shopping,Clothing,expense,False,0.95
+DOORDASH*7538733,24.77,2026-03-28,DoorDash,doordash.com,https://logos.hunter.io/doordash.com,Dining,Delivery,expense,False,0.95
+WIRE TRANSFER FEE 3265061,48.32,2026-03-29,Wire Transfer Fee,,,Banking Fees,Transfer Fee,expense,False,0.95
+TARGET GROCERY WINNIPEG MB,142.61,2026-03-30,Target,target.com,https://logos.hunter.io/target.com,Groceries,Grocery Store,expense,False,0.95
+COSTCO WHSE CHICAGO IL,336.81,2026-03-30,Costco,costco.com,https://logos.hunter.io/costco.com,Groceries,Grocery Store,expense,False,0.95
+LATE PAYMENT FEE,5.91,2026-03-31,Late Payment Fee,,,Banking Fees,Late Fee,expense,False,0.95
+STARBUCKS #3449 DENVER CO,57.77,2026-04-02,Starbucks,starbucks.com,https://logos.hunter.io/starbucks.com,Dining,Coffee,expense,False,0.95
+ADOBE *CREATIVECLD,11.93,2026-04-03,Adobe,adobe.com,https://logos.hunter.io/adobe.com,Subscriptions,Software,expense,True,0.85
+GOODRX 2075701,33.22,2026-04-03,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+AMZN MKTP US*136161,2142.43,2026-04-04,Amazon,amazon.com,https://logos.hunter.io/amazon.com,Shopping,Online Retail,expense,False,0.95
+TRADER JOES 3550,218.87,2026-04-04,Trader Joe's,traderjoes.com,https://logos.hunter.io/traderjoes.com,Groceries,Grocery Store,expense,False,0.95
+ANNUAL CARD FEE,3.21,2026-04-04,Annual Card Fee,,,Banking Fees,Card Fee,expense,False,0.9
+GOOGLE *PLAY 7976745,105.53,2026-04-04,Google Play,play.google.com,https://logos.hunter.io/play.google.com,Entertainment,Gaming,expense,False,0.95
+LATE PAYMENT FEE,22.59,2026-04-07,Late Payment Fee,,,Banking Fees,Late Fee,expense,False,0.95
+LYFT *RIDE 6117548,3.82,2026-04-07,Lyft,lyft.com,https://logos.hunter.io/lyft.com,Transportation,Rideshare,expense,False,0.95
+SPOTIFY USA 2588628,5.41,2026-04-07,Spotify,spotify.com,https://logos.hunter.io/spotify.com,Subscriptions,Digital Services,expense,True,0.85
+CANADIAN TIRE 1722 CALGARY AB,1965.63,2026-04-08,Canadian Tire,canadiantire.ca,https://logos.hunter.io/canadiantire.ca,Shopping,General Retail,expense,False,0.95
+SHOPPERS DRUG MART PHOENIX AZ,56.99,2026-04-08,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+BELL CANADA 3983526,465.01,2026-04-09,Bell Canada,bell.ca,https://logos.hunter.io/bell.ca,Utilities,Mobile & Internet,expense,False,0.7
+LYFT *RIDE 9461069,66.16,2026-04-09,Lyft,lyft.com,https://logos.hunter.io/lyft.com,Transportation,Rideshare,expense,False,0.95
+SHOPPERS DRUG MART MISSISSAUGA ON,83.37,2026-04-09,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+WHOLE FOODS EDMONTON AB,97.23,2026-04-10,Whole Foods,wholefoodsmarket.com,https://logos.hunter.io/wholefoodsmarket.com,Groceries,Grocery Store,expense,False,0.95
+REXALL 7030 EDMONTON AB,15.96,2026-04-12,Rexall,rexall.ca,https://logos.hunter.io/rexall.ca,Healthcare,Pharmacy,expense,False,0.95
+WALGREENS 3986 TORONTO ON,54.82,2026-04-12,Walgreens,walgreens.com,https://logos.hunter.io/walgreens.com,Healthcare,Pharmacy,expense,False,0.95
+OVERDRAFT FEE,48.92,2026-04-13,Overdraft Fee,,,Banking Fees,Overdraft Fee,expense,False,0.95
+H&M 3349 CHICAGO IL,45.91,2026-04-14,H&M,hm.com,https://logos.hunter.io/hm.com,Shopping,Clothing,expense,False,0.95
+TRADER JOES 9789,130.87,2026-04-16,Trader Joe's,traderjoes.com,https://logos.hunter.io/traderjoes.com,Groceries,Grocery Store,expense,False,0.95
+ATM WITHDRAWAL FEE 6170468,1.04,2026-04-16,ATM Withdrawal Fee,,,Banking Fees,ATM Fee,expense,False,0.95
+TRANSFER TO CHECKING 4025917,1048.06,2026-04-16,Transfer to Checking,,,Transfers,Bank Transfer,transfer,False,0.95
+MCDONALDS F9874 VANCOUVER BC,53.07,2026-04-17,McDonald's,mcdonalds.com,https://logos.hunter.io/mcdonalds.com,Dining,Fast Food,expense,False,0.95
+ZARA US TORONTO ON,1251.68,2026-04-17,Zara,zara.com,https://logos.hunter.io/zara.com,Shopping,Clothing,expense,False,0.95
+SUBWAY 3402 LOS ANGELES CA,73.33,2026-04-17,Subway,subway.com,https://logos.hunter.io/subway.com,Dining,Fast Food,expense,False,0.95
+WIRE TRANSFER FEE 1337331,2.17,2026-04-18,Wire Transfer Fee,,,Banking Fees,Transfer Fee,expense,False,0.95
+KAISER PERMANENTE RX 2510360,43.84,2026-04-18,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+ESSO 2242 PHOENIX AZ,47.96,2026-04-18,Esso,esso.ca,https://logos.hunter.io/esso.ca,Transportation,Gas,expense,False,0.95
+REGAL CINEMAS SAN FRANCISCO CA,17.93,2026-04-20,Regal Cinemas,regmovies.com,https://logos.hunter.io/regmovies.com,Entertainment,Movies,expense,False,0.95
+AUDIBLE*5288935,31.53,2026-04-20,Audible,audible.com,https://logos.hunter.io/audible.com,Subscriptions,Digital Services,expense,True,0.85
+PHARMACA ATLANTA GA,93.61,2026-04-20,Pharmaca,pharmacarx.com,https://logos.hunter.io/pharmacarx.com,Healthcare,Pharmacy,expense,False,0.95
+AUDIBLE*1230789,50.99,2026-04-21,Audible,audible.com,https://logos.hunter.io/audible.com,Subscriptions,Digital Services,expense,True,0.85
+SHEIN.COM 1177581,459.45,2026-04-21,SHEIN,shein.com,https://logos.hunter.io/shein.com,Shopping,Clothing,expense,False,0.95
+ESSO 5560 ATLANTA GA,99.35,2026-04-21,Esso,esso.ca,https://logos.hunter.io/esso.ca,Transportation,Gas,expense,False,0.95
+PAYPAL *TRANSFER 515846,164.26,2026-04-22,PayPal,paypal.com,https://logos.hunter.io/paypal.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+MICROSOFT*M365 9862717,36.61,2026-04-22,Microsoft 365,microsoft.com,https://logos.hunter.io/microsoft.com,Subscriptions,Software,expense,True,0.85
+STUBHUB 4761907,13.33,2026-04-23,StubHub,stubhub.com,https://logos.hunter.io/stubhub.com,Entertainment,Events,expense,False,0.95
+SHOPPERS DRUG MART VANCOUVER BC,5.54,2026-04-23,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+MCDONALDS F8791 BOSTON MA,22.82,2026-04-24,McDonald's,mcdonalds.com,https://logos.hunter.io/mcdonalds.com,Dining,Fast Food,expense,False,0.95
+SPOTIFY USA 8587336,10.04,2026-04-26,Spotify,spotify.com,https://logos.hunter.io/spotify.com,Subscriptions,Digital Services,expense,True,0.85
+KROGER #7805 NEW YORK NY,12.01,2026-04-26,Kroger,kroger.com,https://logos.hunter.io/kroger.com,Groceries,Grocery Store,expense,False,0.95
+WALMART GROCERY SAN FRANCISCO CA,363.92,2026-04-26,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+IRS USATAXPYMT 6481734,1122.75,2026-04-27,IRS,irs.gov,https://logos.hunter.io/irs.gov,Utilities,Taxes,expense,False,0.95
+SHAKE SHACK DENVER CO,39.61,2026-04-27,Shake Shack,shakeshack.com,https://logos.hunter.io/shakeshack.com,Dining,Restaurant,expense,False,0.95
+VERIZON WIRELESS 7301433,20.04,2026-04-27,Verizon,verizon.com,https://logos.hunter.io/verizon.com,Utilities,Mobile & Internet,expense,True,0.85
+STUBHUB 7601590,8.51,2026-04-27,StubHub,stubhub.com,https://logos.hunter.io/stubhub.com,Entertainment,Events,expense,False,0.95
+CVS/PHARMACY 6438 PHOENIX AZ,191.47,2026-04-28,CVS Pharmacy,cvs.com,https://logos.hunter.io/cvs.com,Healthcare,Pharmacy,expense,False,0.95
+WESTERN UNION 1536363,1011.87,2026-04-29,Western Union,westernunion.com,https://logos.hunter.io/westernunion.com,Transfers,Bank Transfer,transfer,False,0.9
+CVS/PHARMACY 2168 CHICAGO IL,205.72,2026-04-30,CVS Pharmacy,cvs.com,https://logos.hunter.io/cvs.com,Healthcare,Pharmacy,expense,False,0.95
+INTERAC E-TRANSFER 5668772,327.71,2026-05-01,Interac e-Transfer,,,Transfers,Bank Transfer,transfer,False,0.95
+ESSO 9393 LOS ANGELES CA,66.28,2026-05-01,Esso,esso.ca,https://logos.hunter.io/esso.ca,Transportation,Gas,expense,False,0.95
+SPOTIFY USA 7345685,5.82,2026-05-02,Spotify,spotify.com,https://logos.hunter.io/spotify.com,Subscriptions,Digital Services,expense,True,0.85
+WALMART GROCERY EDMONTON AB,400.37,2026-05-03,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+STATE FARM INS 3037176,63.31,2026-05-04,State Farm,statefarm.com,https://logos.hunter.io/statefarm.com,Insurance,Insurance,expense,True,0.85
+SHEIN.COM 5168760,130.01,2026-05-05,SHEIN,shein.com,https://logos.hunter.io/shein.com,Shopping,Clothing,expense,False,0.95
+LATE PAYMENT FEE,36.26,2026-05-06,Late Payment Fee,,,Banking Fees,Late Fee,expense,False,0.95
+NSF FEE,43.0,2026-05-06,NSF Fee,,,Banking Fees,Overdraft Fee,expense,False,0.9
+HULU 8616493,24.01,2026-05-06,Hulu,hulu.com,https://logos.hunter.io/hulu.com,Entertainment,Streaming,expense,True,0.85
+KAISER PERMANENTE RX 488833,9.13,2026-05-07,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+MTA NYC TRANSIT 2410140,43.43,2026-05-08,MTA,mta.info,https://logos.hunter.io/mta.info,Transportation,Public Transit,expense,False,0.95
+EXXONMOBIL AUSTIN TX,63.12,2026-05-09,ExxonMobil,exxonmobil.com,https://logos.hunter.io/exxonmobil.com,Transportation,Gas,expense,False,0.95
+EXXONMOBIL SAN FRANCISCO CA,60.11,2026-05-09,ExxonMobil,exxonmobil.com,https://logos.hunter.io/exxonmobil.com,Transportation,Gas,expense,False,0.95
+TARGET 4433 PHOENIX AZ,368.57,2026-05-09,Target,target.com,https://logos.hunter.io/target.com,Shopping,General Retail,expense,False,0.95
+DUNKIN #1542 ATLANTA GA,16.13,2026-05-10,Dunkin',dunkindonuts.com,https://logos.hunter.io/dunkindonuts.com,Dining,Coffee,expense,False,0.95
+ROGERS COMM 1358981,2059.35,2026-05-10,Rogers,rogers.com,https://logos.hunter.io/rogers.com,Utilities,Mobile & Internet,expense,True,0.85
+METRO 266 OTTAWA ON,14.91,2026-05-11,Metro,metro.ca,https://logos.hunter.io/metro.ca,Groceries,Grocery Store,expense,False,0.95
+COSTCO WHSE VANCOUVER BC,42.41,2026-05-12,Costco,costco.com,https://logos.hunter.io/costco.com,Groceries,Grocery Store,expense,False,0.95
+AMTRAK 6885090,71.47,2026-05-13,Amtrak,amtrak.com,https://logos.hunter.io/amtrak.com,Transportation,Rail,expense,False,0.95
+NIKE.COM 1105173,89.15,2026-05-13,Nike,nike.com,https://logos.hunter.io/nike.com,Shopping,Clothing,expense,False,0.95
+WALMART PHARMACY TORONTO ON,193.59,2026-05-14,Walmart Pharmacy,walmart.com,https://logos.hunter.io/walmart.com,Healthcare,Pharmacy,expense,False,0.95
+GOODRX 8952897,251.39,2026-05-15,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+STEAMGAMES.COM 4665128,43.12,2026-05-15,Steam,steampowered.com,https://logos.hunter.io/steampowered.com,Entertainment,Gaming,expense,False,0.95
+TACO BELL 9797,5.98,2026-05-16,Taco Bell,tacobell.com,https://logos.hunter.io/tacobell.com,Dining,Fast Food,expense,False,0.9
+AMERICAN RED CROSS 789025,642.63,2026-05-16,American Red Cross,redcross.org,https://logos.hunter.io/redcross.org,Giving,Charity,expense,False,0.95
+VIA RAIL 7581225,54.04,2026-05-16,VIA Rail,viarail.ca,https://logos.hunter.io/viarail.ca,Transportation,Rail,expense,False,0.95
+DAVE & BUSTERS PHOENIX AZ,60.25,2026-05-17,Dave & Buster's,daveandbusters.com,https://logos.hunter.io/daveandbusters.com,Entertainment,Events,expense,False,0.95
+WALGREENS 300 MISSISSAUGA ON,85.74,2026-05-19,Walgreens,walgreens.com,https://logos.hunter.io/walgreens.com,Healthcare,Pharmacy,expense,False,0.95
+NETFLIX.COM 9649709,52.45,2026-05-19,Netflix,netflix.com,https://logos.hunter.io/netflix.com,Entertainment,Streaming,expense,True,0.85
+STARBUCKS #5564 SEATTLE WA,8.2,2026-05-20,Starbucks,starbucks.com,https://logos.hunter.io/starbucks.com,Dining,Coffee,expense,False,0.95
+RITE AID 7712 OTTAWA ON,128.89,2026-05-20,Rite Aid,riteaid.com,https://logos.hunter.io/riteaid.com,Healthcare,Pharmacy,expense,False,0.95
+AMERICAN RED CROSS 6481684,1015.07,2026-05-20,American Red Cross,redcross.org,https://logos.hunter.io/redcross.org,Giving,Charity,expense,False,0.95
+PUBLIX 759 MIAMI FL,135.9,2026-05-20,Publix,publix.com,https://logos.hunter.io/publix.com,Groceries,Grocery Store,expense,False,0.95
+DUNKIN #6680 VANCOUVER BC,28.56,2026-05-20,Dunkin',dunkindonuts.com,https://logos.hunter.io/dunkindonuts.com,Dining,Coffee,expense,False,0.95
+T-MOBILE 7477995,53.34,2026-05-20,T-Mobile,t-mobile.com,https://logos.hunter.io/t-mobile.com,Utilities,Mobile & Internet,expense,False,0.7
+PAYPAL *TRANSFER 2726181,20.07,2026-05-22,PayPal,paypal.com,https://logos.hunter.io/paypal.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+FOREIGN TRANSACTION FEE 5024115,11.94,2026-05-23,Foreign Transaction Fee,,,Banking Fees,Foreign Transaction Fee,expense,False,0.95
+MACYS CALGARY AB,130.4,2026-05-24,Macy's,macys.com,https://logos.hunter.io/macys.com,Shopping,Clothing,expense,False,0.9
+KAISER PERMANENTE RX 1158651,177.66,2026-05-24,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+STATE FARM INS 9883753,146.31,2026-05-25,State Farm,statefarm.com,https://logos.hunter.io/statefarm.com,Insurance,Insurance,expense,True,0.85
+TRANSFER TO CHECKING 9394937,1184.45,2026-05-26,Transfer to Checking,,,Transfers,Bank Transfer,transfer,False,0.95
+SAFEWAY 9690 VANCOUVER BC,397.45,2026-05-27,Safeway,safeway.com,https://logos.hunter.io/safeway.com,Groceries,Grocery Store,expense,False,0.9
+PUBLIX 6342 PHOENIX AZ,212.0,2026-05-27,Publix,publix.com,https://logos.hunter.io/publix.com,Groceries,Grocery Store,expense,False,0.95
+SHELL OIL 2354 LOS ANGELES CA,111.74,2026-05-27,Shell,shell.com,https://logos.hunter.io/shell.com,Transportation,Gas,expense,False,0.95
+WHOLE FOODS SEATTLE WA,11.62,2026-05-28,Whole Foods,wholefoodsmarket.com,https://logos.hunter.io/wholefoodsmarket.com,Groceries,Grocery Store,expense,False,0.95
+ROGERS COMM 832280,552.08,2026-05-28,Rogers,rogers.com,https://logos.hunter.io/rogers.com,Utilities,Mobile & Internet,expense,True,0.85
+ZARA US PHOENIX AZ,1123.69,2026-05-28,Zara,zara.com,https://logos.hunter.io/zara.com,Shopping,Clothing,expense,False,0.95
+OVERDRAFT FEE,10.34,2026-05-29,Overdraft Fee,,,Banking Fees,Overdraft Fee,expense,False,0.95
+WISE TRANSFER 3206298,182.37,2026-05-30,Wise,wise.com,https://logos.hunter.io/wise.com,Transfers,Bank Transfer,transfer,False,0.95
+REGAL CINEMAS OTTAWA ON,39.28,2026-05-30,Regal Cinemas,regmovies.com,https://logos.hunter.io/regmovies.com,Entertainment,Movies,expense,False,0.95
+PARKING METER SAN FRANCISCO CA,14.01,2026-05-30,Parking Meter,,,Transportation,Parking,expense,False,0.95
+LYFT *RIDE 312267,97.7,2026-06-01,Lyft,lyft.com,https://logos.hunter.io/lyft.com,Transportation,Rideshare,expense,False,0.95
+DISNEY PLUS 4667533,20.82,2026-06-02,Disney+,disneyplus.com,https://logos.hunter.io/disneyplus.com,Entertainment,Streaming,expense,True,0.85
+H&M 7304 TORONTO ON,2097.51,2026-06-03,H&M,hm.com,https://logos.hunter.io/hm.com,Shopping,Clothing,expense,False,0.95
+DUNKIN #9466 BOSTON MA,39.4,2026-06-04,Dunkin',dunkindonuts.com,https://logos.hunter.io/dunkindonuts.com,Dining,Coffee,expense,False,0.95
+OVERDRAFT FEE,8.02,2026-06-05,Overdraft Fee,,,Banking Fees,Overdraft Fee,expense,False,0.95
+SHAKE SHACK OTTAWA ON,8.05,2026-06-06,Shake Shack,shakeshack.com,https://logos.hunter.io/shakeshack.com,Dining,Restaurant,expense,False,0.95
+PHARMACA VANCOUVER BC,24.9,2026-06-07,Pharmaca,pharmacarx.com,https://logos.hunter.io/pharmacarx.com,Healthcare,Pharmacy,expense,False,0.95
+ATM WITHDRAWAL FEE 2789594,5.73,2026-06-07,ATM Withdrawal Fee,,,Banking Fees,ATM Fee,expense,False,0.95
+WALGREENS 1916 CALGARY AB,5.19,2026-06-07,Walgreens,walgreens.com,https://logos.hunter.io/walgreens.com,Healthcare,Pharmacy,expense,False,0.95
+AMTRAK 2773322,39.24,2026-06-07,Amtrak,amtrak.com,https://logos.hunter.io/amtrak.com,Transportation,Rail,expense,False,0.95
+MONTHLY MAINTENANCE FEE,1.26,2026-06-08,Monthly Maintenance Fee,,,Banking Fees,Account Fee,expense,False,0.9
+KAISER PERMANENTE RX 4752512,199.86,2026-06-09,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+ADOBE *CREATIVECLD,17.32,2026-06-09,Adobe,adobe.com,https://logos.hunter.io/adobe.com,Subscriptions,Software,expense,True,0.85
+OVERDRAFT FEE,49.21,2026-06-10,Overdraft Fee,,,Banking Fees,Overdraft Fee,expense,False,0.95
+CINEPLEX 4946 HOUSTON TX,103.15,2026-06-10,Cineplex,cineplex.com,https://logos.hunter.io/cineplex.com,Entertainment,Movies,expense,False,0.9
+SHEIN.COM 2241239,2124.59,2026-06-12,SHEIN,shein.com,https://logos.hunter.io/shein.com,Shopping,Clothing,expense,False,0.95
+WHOLE FOODS MIAMI FL,10.19,2026-06-12,Whole Foods,wholefoodsmarket.com,https://logos.hunter.io/wholefoodsmarket.com,Groceries,Grocery Store,expense,False,0.95
+AMTRAK 5612415,98.26,2026-06-12,Amtrak,amtrak.com,https://logos.hunter.io/amtrak.com,Transportation,Rail,expense,False,0.95
+RITE AID 4439 SEATTLE WA,190.43,2026-06-13,Rite Aid,riteaid.com,https://logos.hunter.io/riteaid.com,Healthcare,Pharmacy,expense,False,0.95
+WALMART GROCERY NEW YORK NY,366.72,2026-06-13,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+DISNEY PLUS 948731,30.48,2026-06-14,Disney+,disneyplus.com,https://logos.hunter.io/disneyplus.com,Entertainment,Streaming,expense,True,0.85
+APPLE.COM/BILL ICLOUD,8.06,2026-06-14,Apple,apple.com,https://logos.hunter.io/apple.com,Subscriptions,Software,expense,True,0.85
+YOUTUBEPREMIUM 2746552,17.46,2026-06-15,YouTube Premium,youtube.com,https://logos.hunter.io/youtube.com,Subscriptions,Digital Services,expense,False,0.7
+CANADIAN TIRE 2951 WINNIPEG MB,262.19,2026-06-16,Canadian Tire,canadiantire.ca,https://logos.hunter.io/canadiantire.ca,Shopping,General Retail,expense,False,0.95
+MTA NYC TRANSIT 5867292,30.28,2026-06-16,MTA,mta.info,https://logos.hunter.io/mta.info,Transportation,Public Transit,expense,False,0.95
+SHEIN.COM 6818473,1520.61,2026-06-16,SHEIN,shein.com,https://logos.hunter.io/shein.com,Shopping,Clothing,expense,False,0.95
+AMTRAK 965901,10.24,2026-06-16,Amtrak,amtrak.com,https://logos.hunter.io/amtrak.com,Transportation,Rail,expense,False,0.95
+AMERICAN RED CROSS 5313522,1448.96,2026-06-17,American Red Cross,redcross.org,https://logos.hunter.io/redcross.org,Giving,Charity,expense,False,0.95
+RITE AID 7416 EDMONTON AB,51.42,2026-06-17,Rite Aid,riteaid.com,https://logos.hunter.io/riteaid.com,Healthcare,Pharmacy,expense,False,0.95
+HBO MAX 6550545,18.74,2026-06-17,HBO Max,max.com,https://logos.hunter.io/max.com,Entertainment,Streaming,expense,False,0.7
+DISNEY PLUS 5879998,6.37,2026-06-17,Disney+,disneyplus.com,https://logos.hunter.io/disneyplus.com,Entertainment,Streaming,expense,True,0.85
+SOBEYS CHICAGO IL,110.65,2026-06-20,Sobeys,sobeys.com,https://logos.hunter.io/sobeys.com,Groceries,Grocery Store,expense,False,0.95
+NATIONAL GRID GAS 8045036,2049.92,2026-06-20,National Grid,nationalgridus.com,https://logos.hunter.io/nationalgridus.com,Utilities,Gas Utility,expense,True,0.85
+IKEA MISSISSAUGA ON,83.51,2026-06-20,IKEA,ikea.com,https://logos.hunter.io/ikea.com,Housing,Furniture,expense,False,0.95
+KAISER PERMANENTE RX 7631380,162.81,2026-06-20,Kaiser Permanente,kaiserpermanente.org,https://logos.hunter.io/kaiserpermanente.org,Healthcare,Pharmacy,expense,False,0.95
+PAYROLL DEPOSIT 7053166,3382.62,2026-06-23,Payroll Deposit,,,Income,Payroll,income,False,0.95
+XBOX *GAMEPASS 530812,141.1,2026-06-23,Xbox Game Pass,xbox.com,https://logos.hunter.io/xbox.com,Entertainment,Gaming,expense,True,0.85
+APPLE.COM/BILL ICLOUD,11.53,2026-06-24,Apple,apple.com,https://logos.hunter.io/apple.com,Subscriptions,Software,expense,True,0.85
+WALMART PHARMACY VANCOUVER BC,29.74,2026-06-26,Walmart Pharmacy,walmart.com,https://logos.hunter.io/walmart.com,Healthcare,Pharmacy,expense,False,0.95
+PUBLIX 8917 CALGARY AB,101.85,2026-06-27,Publix,publix.com,https://logos.hunter.io/publix.com,Groceries,Grocery Store,expense,False,0.95
+H&M 2592 CALGARY AB,62.8,2026-06-27,H&M,hm.com,https://logos.hunter.io/hm.com,Shopping,Clothing,expense,False,0.95
+MICROSOFT*M365 4852087,32.34,2026-06-27,Microsoft 365,microsoft.com,https://logos.hunter.io/microsoft.com,Subscriptions,Software,expense,True,0.85
+LIVE NATION 1165818,35.24,2026-06-28,Live Nation,livenationentertainment.com,https://logos.hunter.io/livenationentertainment.com,Entertainment,Events,expense,False,0.9
+REGAL CINEMAS PHOENIX AZ,29.84,2026-06-28,Regal Cinemas,regmovies.com,https://logos.hunter.io/regmovies.com,Entertainment,Movies,expense,False,0.95
+VENMO *PAYMENT 3658545,1450.97,2026-06-28,Venmo,venmo.com,https://logos.hunter.io/venmo.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+STATE FARM INS 5555706,755.61,2026-06-28,State Farm,statefarm.com,https://logos.hunter.io/statefarm.com,Insurance,Insurance,expense,True,0.85
+SHOPPERS DRUG MART EDMONTON AB,61.14,2026-06-29,Shoppers Drug Mart,shoppersdrugmart.ca,https://logos.hunter.io/shoppersdrugmart.ca,Healthcare,Pharmacy,expense,False,0.95
+ADOBE *CREATIVECLD,56.91,2026-06-29,Adobe,adobe.com,https://logos.hunter.io/adobe.com,Subscriptions,Software,expense,True,0.85
+GOODRX 3799685,64.25,2026-06-29,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+SPOTIFY USA 6122674,45.83,2026-06-30,Spotify,spotify.com,https://logos.hunter.io/spotify.com,Subscriptions,Digital Services,expense,True,0.85
+WALGREENS 9898 LOS ANGELES CA,185.77,2026-06-30,Walgreens,walgreens.com,https://logos.hunter.io/walgreens.com,Healthcare,Pharmacy,expense,False,0.95
+THE HOME DEPOT 8741 VANCOUVER BC,1531.74,2026-06-30,The Home Depot,homedepot.com,https://logos.hunter.io/homedepot.com,Housing,Home Improvement,expense,False,0.95
+NINTENDO 2972269,79.7,2026-06-30,Nintendo,nintendo.com,https://logos.hunter.io/nintendo.com,Entertainment,Gaming,expense,False,0.95
+SUBWAY 4800 BOSTON MA,60.07,2026-07-01,Subway,subway.com,https://logos.hunter.io/subway.com,Dining,Fast Food,expense,False,0.95
+KROGER #4166 HOUSTON TX,262.82,2026-07-01,Kroger,kroger.com,https://logos.hunter.io/kroger.com,Groceries,Grocery Store,expense,False,0.95
+PUBLIX 7125 DENVER CO,183.93,2026-07-02,Publix,publix.com,https://logos.hunter.io/publix.com,Groceries,Grocery Store,expense,False,0.95
+BEST BUY 9433 AUSTIN TX,868.9,2026-07-04,Best Buy,bestbuy.com,https://logos.hunter.io/bestbuy.com,Shopping,Electronics,expense,False,0.95
+KROGER #6736 NEW YORK NY,27.22,2026-07-04,Kroger,kroger.com,https://logos.hunter.io/kroger.com,Groceries,Grocery Store,expense,False,0.95
+INTERAC E-TRANSFER 4100351,686.73,2026-07-05,Interac e-Transfer,,,Transfers,Bank Transfer,transfer,False,0.95
+THE HOME DEPOT 7478 EDMONTON AB,1560.09,2026-07-05,The Home Depot,homedepot.com,https://logos.hunter.io/homedepot.com,Housing,Home Improvement,expense,False,0.95
+NINTENDO 3072018,146.93,2026-07-06,Nintendo,nintendo.com,https://logos.hunter.io/nintendo.com,Entertainment,Gaming,expense,False,0.95
+XBOX *GAMEPASS 2137191,8.26,2026-07-07,Xbox Game Pass,xbox.com,https://logos.hunter.io/xbox.com,Entertainment,Gaming,expense,True,0.85
+SHAKE SHACK ATLANTA GA,43.89,2026-07-08,Shake Shack,shakeshack.com,https://logos.hunter.io/shakeshack.com,Dining,Restaurant,expense,False,0.95
+CHIPOTLE 2447 MISSISSAUGA ON,5.7,2026-07-08,Chipotle,chipotle.com,https://logos.hunter.io/chipotle.com,Dining,Restaurant,expense,False,0.9
+WISE TRANSFER 1423049,283.4,2026-07-08,Wise,wise.com,https://logos.hunter.io/wise.com,Transfers,Bank Transfer,transfer,False,0.95
+IRS USATAXPYMT 8475710,807.59,2026-07-10,IRS,irs.gov,https://logos.hunter.io/irs.gov,Utilities,Taxes,expense,False,0.95
+FOREIGN TRANSACTION FEE 9050276,1.69,2026-07-10,Foreign Transaction Fee,,,Banking Fees,Foreign Transaction Fee,expense,False,0.95
+AMTRAK 1462693,3.49,2026-07-10,Amtrak,amtrak.com,https://logos.hunter.io/amtrak.com,Transportation,Rail,expense,False,0.95
+WISE TRANSFER 6740184,101.81,2026-07-11,Wise,wise.com,https://logos.hunter.io/wise.com,Transfers,Bank Transfer,transfer,False,0.95
+BEST BUY 3781 HOUSTON TX,1995.75,2026-07-11,Best Buy,bestbuy.com,https://logos.hunter.io/bestbuy.com,Shopping,Electronics,expense,False,0.95
+CASH APP*1730140,2668.59,2026-07-11,Cash App,cash.app,https://logos.hunter.io/cash.app,Transfers,Peer-to-Peer Transfer,transfer,False,0.9
+WAYFAIR 978547,1440.24,2026-07-11,Wayfair,wayfair.com,https://logos.hunter.io/wayfair.com,Shopping,Online Retail,expense,False,0.95
+METRO 6624 EDMONTON AB,44.62,2026-07-11,Metro,metro.ca,https://logos.hunter.io/metro.ca,Groceries,Grocery Store,expense,False,0.95
+APPLE CASH SEND 9516129,193.67,2026-07-12,Apple Cash,apple.com,https://logos.hunter.io/apple.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+APPLE CASH SEND 6793979,3172.29,2026-07-12,Apple Cash,apple.com,https://logos.hunter.io/apple.com,Transfers,Peer-to-Peer Transfer,transfer,False,0.95
+CHEVRON 561 ATLANTA GA,95.63,2026-07-12,Chevron,chevron.com,https://logos.hunter.io/chevron.com,Transportation,Gas,expense,False,0.9
+WALMART GROCERY DENVER CO,163.76,2026-07-14,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+COSTCO WHSE MISSISSAUGA ON,35.29,2026-07-14,Costco,costco.com,https://logos.hunter.io/costco.com,Groceries,Grocery Store,expense,False,0.95
+VERIZON WIRELESS 9440543,25.97,2026-07-14,Verizon,verizon.com,https://logos.hunter.io/verizon.com,Utilities,Mobile & Internet,expense,True,0.85
+PUBLIX 8766 NEW YORK NY,56.77,2026-07-15,Publix,publix.com,https://logos.hunter.io/publix.com,Groceries,Grocery Store,expense,False,0.95
+WISE TRANSFER 5639837,1377.38,2026-07-15,Wise,wise.com,https://logos.hunter.io/wise.com,Transfers,Bank Transfer,transfer,False,0.95
+TARGET GROCERY SEATTLE WA,14.5,2026-07-15,Target,target.com,https://logos.hunter.io/target.com,Groceries,Grocery Store,expense,False,0.95
+SHEIN.COM 2235534,122.13,2026-07-16,SHEIN,shein.com,https://logos.hunter.io/shein.com,Shopping,Clothing,expense,False,0.95
+DAVE & BUSTERS MISSISSAUGA ON,61.82,2026-07-17,Dave & Buster's,daveandbusters.com,https://logos.hunter.io/daveandbusters.com,Entertainment,Events,expense,False,0.95
+GOOGLE *PLAY 8493009,61.31,2026-07-17,Google Play,play.google.com,https://logos.hunter.io/play.google.com,Entertainment,Gaming,expense,False,0.95
+METRO 2124 MONTREAL QC,210.91,2026-07-18,Metro,metro.ca,https://logos.hunter.io/metro.ca,Groceries,Grocery Store,expense,False,0.95
+SOBEYS NEW YORK NY,349.99,2026-07-19,Sobeys,sobeys.com,https://logos.hunter.io/sobeys.com,Groceries,Grocery Store,expense,False,0.95
+STEAMGAMES.COM 833037,38.65,2026-07-19,Steam,steampowered.com,https://logos.hunter.io/steampowered.com,Entertainment,Gaming,expense,False,0.95
+PARKING METER NEW YORK NY,97.52,2026-07-19,Parking Meter,,,Transportation,Parking,expense,False,0.95
+WALMART GROCERY SAN FRANCISCO CA,157.15,2026-07-21,Walmart,walmart.com,https://logos.hunter.io/walmart.com,Groceries,Grocery Store,expense,False,0.95
+METRO 6271 ATLANTA GA,209.46,2026-07-21,Metro,metro.ca,https://logos.hunter.io/metro.ca,Groceries,Grocery Store,expense,False,0.95
+GOODRX 8202469,30.03,2026-07-21,GoodRx,goodrx.com,https://logos.hunter.io/goodrx.com,Healthcare,Pharmacy,expense,False,0.95
+WIRE TRANSFER FEE 1976932,1.47,2026-07-22,Wire Transfer Fee,,,Banking Fees,Transfer Fee,expense,False,0.95
+WIRE TRANSFER 4193379,121.54,2026-07-22,Wire Transfer,,,Transfers,Bank Transfer,transfer,False,0.95
+UBER EATS 3771545,8.72,2026-07-24,Uber Eats,ubereats.com,https://logos.hunter.io/ubereats.com,Dining,Delivery,expense,False,0.9
+FOREIGN TRANSACTION FEE 7317547,1.77,2026-07-25,Foreign Transaction Fee,,,Banking Fees,Foreign Transaction Fee,expense,False,0.95
+HULU 6167228,25.46,2026-07-26,Hulu,hulu.com,https://logos.hunter.io/hulu.com,Entertainment,Streaming,expense,True,0.85
+WHOLE FOODS VANCOUVER BC,260.4,2026-07-26,Whole Foods,wholefoodsmarket.com,https://logos.hunter.io/wholefoodsmarket.com,Groceries,Grocery Store,expense,False,0.95
+RITE AID 7392 CHICAGO IL,157.31,2026-07-27,Rite Aid,riteaid.com,https://logos.hunter.io/riteaid.com,Healthcare,Pharmacy,expense,False,0.95
+HULU 2862487,7.08,2026-07-27,Hulu,hulu.com,https://logos.hunter.io/hulu.com,Entertainment,Streaming,expense,True,0.85
+HULU 5132437,46.17,2026-07-28,Hulu,hulu.com,https://logos.hunter.io/hulu.com,Entertainment,Streaming,expense,True,0.85

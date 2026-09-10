@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-labelledby="title description">
+  <title id="title">Detailed PennyWise AI architecture</title>
+  <desc id="description">Architecture of PennyWise AI. The upper lane prepares raw financial data into enriched transaction data. The middle lane sends user chat requests from React to FastAPI, then to a Gemini-powered agent. Gemini invokes declared analytics tools that read the local enriched CSV. The lower lane shows live-only response configuration: the UI reports a connection error when the backend is unavailable.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f7f0"/><stop offset="1" stop-color="#edf3df"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#324126" flood-opacity=".13"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#50633b"/></marker>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #20291b; }
+      .subtitle { font: 400 14px Arial, sans-serif; fill: #647058; }
+      .lane { font: 700 13px Arial, sans-serif; letter-spacing: 1.2px; fill: #53623b; }
+      .node-title { font: 700 15px Arial, sans-serif; fill: #20291b; }
+      .node-copy { font: 400 11px Arial, sans-serif; fill: #596653; }
+      .white-title { font: 700 15px Arial, sans-serif; fill: #fff; }
+      .white-copy { font: 400 11px Arial, sans-serif; fill: #d5ddca; }
+      .edge { fill: none; stroke: #50633b; stroke-width: 2; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 7 5; }
+      .label { font: 600 10px Arial, sans-serif; fill: #5d6b53; }
+    </style>
+  </defs>
+  <rect width="1440" height="1040" rx="28" fill="url(#background)"/>
+  <text x="55" y="58" class="title">PennyWise AI — detailed system architecture</text>
+  <text x="55" y="84" class="subtitle">A local prototype: deterministic financial analytics, Gemini function calling, and a resilient React banking interface.</text>
+
+  <rect x="42" y="115" width="1356" height="222" rx="18" fill="#f1f4e8" stroke="#d3dcc1"/>
+  <text x="65" y="145" class="lane">1. DATA PREPARATION (RUN WHEN THE DEMO DATA IS REBUILT)</text>
+  <g filter="url(#shadow)">
+    <rect x="76" y="184" width="170" height="104" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="161" y="218" text-anchor="middle" class="node-title">Raw CSV</text>
+    <text x="161" y="239" text-anchor="middle" class="node-copy">sample_transactions.csv</text>
+    <text x="161" y="260" text-anchor="middle" class="node-copy">Fictitious source export</text>
+    <rect x="330" y="171" width="240" height="130" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="450" y="205" text-anchor="middle" class="node-title">Enrichment script</text>
+    <text x="450" y="226" text-anchor="middle" class="node-copy">scripts/enrich_transactions.py</text>
+    <text x="450" y="250" text-anchor="middle" class="node-copy">Normalizes dates and amounts</text>
+    <text x="450" y="269" text-anchor="middle" class="node-copy">Classifies type, merchant, category</text>
+    <rect x="660" y="171" width="205" height="130" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="762" y="204" text-anchor="middle" class="node-title">Classification rules</text>
+    <text x="762" y="226" text-anchor="middle" class="node-copy">Controlled taxonomy</text>
+    <text x="762" y="247" text-anchor="middle" class="node-copy">Merchant aliases and logos</text>
+    <text x="762" y="268" text-anchor="middle" class="node-copy">Default deterministic path</text>
+    <rect x="955" y="171" width="186" height="130" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="1048" y="204" text-anchor="middle" class="node-title">Optional LLM step</text>
+    <text x="1048" y="226" text-anchor="middle" class="node-copy">OpenAI refinement</text>
+    <text x="1048" y="247" text-anchor="middle" class="node-copy">Only with --use-llm</text>
+    <text x="1048" y="268" text-anchor="middle" class="node-copy">Validated against taxonomy</text>
+    <rect x="1215" y="171" width="145" height="130" rx="15" fill="#2c3923"/>
+    <text x="1287" y="204" text-anchor="middle" class="white-title">Prepared data</text>
+    <text x="1287" y="228" text-anchor="middle" class="white-copy">enriched_</text>
+    <text x="1287" y="245" text-anchor="middle" class="white-copy">transactions.csv</text>
+    <text x="1287" y="271" text-anchor="middle" class="white-copy">data_profile.json</text>
+  </g>
+  <path class="edge" d="M246 236 H330"/>
+  <path class="edge" d="M660 236 H570"/>
+  <text x="615" y="223" text-anchor="middle" class="label">rules</text>
+  <path class="edge dash" d="M955 275 C840 322 700 321 570 274"/>
+  <text x="780" y="320" text-anchor="middle" class="label">optional classification refinement</text>
+  <path class="edge" d="M570 236 H1215"/>
+  <text x="1118" y="223" text-anchor="middle" class="label">normalized output</text>
+
+  <rect x="42" y="362" width="1356" height="425" rx="18" fill="#f7f8f3" stroke="#d3dcc1"/>
+  <text x="65" y="392" class="lane">2. LIVE CHAT REQUEST (DEFAULT PROTOTYPE FLOW)</text>
+  <g filter="url(#shadow)">
+    <rect x="75" y="516" width="130" height="108" rx="15" fill="#27331e"/>
+    <text x="140" y="552" text-anchor="middle" class="white-title">User</text>
+    <text x="140" y="576" text-anchor="middle" class="white-copy">Types a financial</text>
+    <text x="140" y="593" text-anchor="middle" class="white-copy">question</text>
+    <rect x="270" y="445" width="222" height="250" rx="15" fill="#fff" stroke="#d6deca"/>
+    <rect x="290" y="465" width="182" height="35" rx="9" fill="#ceff55"/>
+    <text x="381" y="488" text-anchor="middle" class="node-title">React + Vite client</text>
+    <text x="381" y="531" text-anchor="middle" class="node-copy">PhoneFrame + BankingHome</text>
+    <text x="381" y="551" text-anchor="middle" class="node-copy">Chat + Message + Composer</text>
+    <text x="381" y="579" text-anchor="middle" class="node-copy">Keeps chat history in memory</text>
+    <text x="381" y="599" text-anchor="middle" class="node-copy">services/api.js posts JSON</text>
+    <text x="381" y="630" text-anchor="middle" class="node-copy">localhost:5173</text>
+    <rect x="570" y="487" width="180" height="144" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="660" y="522" text-anchor="middle" class="node-title">FastAPI service</text>
+    <text x="660" y="545" text-anchor="middle" class="node-copy">backend/main.py</text>
+    <text x="660" y="570" text-anchor="middle" class="node-copy">POST /chat</text>
+    <text x="660" y="589" text-anchor="middle" class="node-copy">ChatRequest / ChatResponse</text>
+    <text x="660" y="609" text-anchor="middle" class="node-copy">CORS for local Vite client</text>
+    <rect x="830" y="445" width="222" height="250" rx="15" fill="#fff" stroke="#d6deca"/>
+    <rect x="850" y="465" width="182" height="35" rx="9" fill="#dcebbd"/>
+    <text x="941" y="488" text-anchor="middle" class="node-title">PennyWise agent</text>
+    <text x="941" y="531" text-anchor="middle" class="node-copy">backend/agent.py</text>
+    <text x="941" y="551" text-anchor="middle" class="node-copy">System safety/data instructions</text>
+    <text x="941" y="579" text-anchor="middle" class="node-copy">Builds contents from history</text>
+    <text x="941" y="599" text-anchor="middle" class="node-copy">Dispatches allowed tool calls</text>
+    <text x="941" y="630" text-anchor="middle" class="node-copy">Returns final model text</text>
+    <rect x="1130" y="432" width="195" height="132" rx="15" fill="#315a4b"/>
+    <text x="1227" y="468" text-anchor="middle" class="white-title">Google Gemini</text>
+    <text x="1227" y="491" text-anchor="middle" class="white-copy">GenerateContent API</text>
+    <text x="1227" y="512" text-anchor="middle" class="white-copy">Prompt + chat history</text>
+    <text x="1227" y="533" text-anchor="middle" class="white-copy">Function-call decision</text>
+    <rect x="1130" y="625" width="195" height="112" rx="15" fill="#fff" stroke="#aebd91"/>
+    <text x="1227" y="658" text-anchor="middle" class="node-title">Tool + analytics layer</text>
+    <text x="1227" y="678" text-anchor="middle" class="node-copy">transaction_categories() metadata lookup</text>
+    <text x="1227" y="697" text-anchor="middle" class="node-copy">list_transactions() exact CSV filters</text>
+    <text x="1227" y="716" text-anchor="middle" class="node-copy">include_logo / return_all + pandas</text>
+  </g>
+  <path class="edge" d="M205 570 H270"/>
+  <path class="edge" d="M492 570 H570"/>
+  <text x="531" y="556" text-anchor="middle" class="label">POST /chat</text>
+  <text x="531" y="571" text-anchor="middle" class="label">message + history</text>
+  <path class="edge" d="M750 559 H830"/>
+  <path class="edge" d="M1052 507 H1130"/>
+  <text x="1091" y="492" text-anchor="middle" class="label">model request</text>
+  <path class="edge" d="M1130 525 H1052"/>
+  <text x="1091" y="542" text-anchor="middle" class="label">text / function calls</text>
+  <path class="edge" d="M1052 652 H1130"/>
+  <text x="1091" y="639" text-anchor="middle" class="label">declared function call</text>
+  <path class="edge" d="M1130 694 H1052"/>
+  <text x="1091" y="711" text-anchor="middle" class="label">structured result</text>
+  <path class="edge" d="M941 695 C820 752 623 745 492 638"/>
+  <text x="695" y="756" text-anchor="middle" class="label">JSON response → rendered assistant message</text>
+
+  <rect x="42" y="812" width="1356" height="175" rx="18" fill="#f1f4e8" stroke="#d3dcc1"/>
+  <text x="65" y="842" class="lane">3. LIVE-ONLY RESPONSE CONFIGURATION</text>
+  <g filter="url(#shadow)">
+    <rect x="175" y="868" width="270" height="76" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="310" y="898" text-anchor="middle" class="node-title">VITE_API_URL</text>
+    <text x="310" y="919" text-anchor="middle" class="node-copy">Frontend points to the FastAPI service</text>
+    <rect x="585" y="868" width="270" height="76" rx="15" fill="#fff" stroke="#d6deca"/>
+    <text x="720" y="898" text-anchor="middle" class="node-title">API request failure</text>
+    <text x="720" y="919" text-anchor="middle" class="node-copy">UI shows connection error and retry</text>
+    <rect x="995" y="855" width="250" height="103" rx="15" fill="#2c3923"/>
+    <text x="1120" y="888" text-anchor="middle" class="white-title">Backend-only answers</text>
+    <text x="1120" y="911" text-anchor="middle" class="white-copy">No browser mock-response path</text>
+    <text x="1120" y="931" text-anchor="middle" class="white-copy">Responses originate in FastAPI</text>
+  </g>
+  <path class="edge dash" d="M445 906 H995"/>
+  <path class="edge dash" d="M855 906 H995"/>
+  <text x="918" y="892" text-anchor="middle" class="label">no response fallback</text>
+  <path class="edge dash" d="M1120 855 C1028 799 743 800 492 672"/>
+  <text x="808" y="805" text-anchor="middle" class="label">only successful backend replies return to the chat UI</text>
+</svg>

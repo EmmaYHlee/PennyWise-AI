@@ -1,0 +1,22 @@
+{
+  "total_transactions": 300,
+  "date_range": {
+    "start": "2026-01-28",
+    "end": "2026-07-28"
+  },
+  "amounts": {
+    "minimum": 1.04,
+    "maximum": 3552.34,
+    "positive": 300,
+    "negative": 0
+  },
+  "duplicate_source_rows": 0,
+  "repeated_descriptions": {
+    "LATE PAYMENT FEE": 5,
+    "OVERDRAFT FEE": 4,
+    "APPLE.COM/BILL ICLOUD": 3,
+    "ADOBE *CREATIVECLD": 3,
+    "WALMART GROCERY SAN FRANCISCO CA": 2
+  },
+  "amount_sign_convention": "All amounts are positive; sign cannot determine transaction type."
+}
