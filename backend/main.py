@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.agent import chat
-from backend.analytics import list_transactions
+from backend.analytics import get_account, list_transactions
 from backend.models import ChatRequest, ChatResponse
 
 
@@ -31,12 +31,7 @@ def dashboard() -> dict:
         limit=4,
     )
     return {
-        "account": {
-            "label": "Primary account",
-            "name": "Everyday Chequing",
-            "number_masked": "•••• 4821",
-            "balance": 8416.52,
-        },
+        "account": get_account(),
         "savings_goal": {
             "name": "Weekend in Montréal",
             "saved": 1840.00,
